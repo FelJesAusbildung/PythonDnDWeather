@@ -1,0 +1,237 @@
+[ {
+  "name" : "PLACEHOLDER",
+  "chance" : 0,
+  "flavor" : "Congrats, you rolled a Placeholder!"
+}, {
+  "name" : "RUINS",
+  "chance" : 378,
+  "flavor" : "Spectre's Ruins"
+}, {
+  "name" : "TEMPLE",
+  "chance" : 126,
+  "flavor" : "Temple Being"
+}, {
+  "name" : "DAMNED9_1",
+  "chance" : 42,
+  "flavor" : "Ship of the Damned, Level 9. The Loot is: Fharlanghn’s Lines"
+}, {
+  "name" : "DAMNED9_2",
+  "chance" : 42,
+  "flavor" : "Ship of the Damned, Level 9. The Loot is: NonDimensional Trunk"
+}, {
+  "name" : "DAMNED9_3",
+  "chance" : 42,
+  "flavor" : "Ship of the Damned, Level 9. The Loot is: Lesser Wind-Favoured Sails"
+}, {
+  "name" : "DAMNED11_1",
+  "chance" : 63,
+  "flavor" : "Ship of the Damned, Level  11. The Loot is: Charts of Certainty or previous Levels Loot"
+}, {
+  "name" : "DAMNED11_2",
+  "chance" : 63,
+  "flavor" : "Ship of the Damned, Level  11. The Loot is: Eldritch Exhaust or previous Levels Loot"
+}, {
+  "name" : "DAMNED14",
+  "chance" : 126,
+  "flavor" : "Ship of the Damned, Level 14. The Loot is: Self Propelled Vehicle or previous Levels Loot"
+}, {
+  "name" : "DAMNED15",
+  "chance" : 126,
+  "flavor" : "Ship of the Damned, Level 15. The Loot is: Greater Wind-Favoured Sails or previous Levels Loot"
+}, {
+  "name" : "DAMNED17_1",
+  "chance" : 63,
+  "flavor" : "Ship of the Damned, Level 17. The Loot is: Cloud Keel or previous Levels Loot"
+}, {
+  "name" : "DAMNED17_2",
+  "chance" : 63,
+  "flavor" : "Ship of the Damned, Level 17. The Loot is: Earth Keel or previous Levels Loot"
+}, {
+  "name" : "KRAKENBLADE",
+  "chance" : 126,
+  "flavor" : "Krakenblade"
+}, {
+  "name" : "RANDOM1",
+  "chance" : 14,
+  "flavor" : "Random Ship: The Indomitable"
+}, {
+  "name" : "RANDOM2",
+  "chance" : 14,
+  "flavor" : "Random Ship: Silence"
+}, {
+  "name" : "RANDOM3",
+  "chance" : 14,
+  "flavor" : "Random Ship: Hunger"
+}, {
+  "name" : "RANDOM4",
+  "chance" : 14,
+  "flavor" : "Random Ship: Bella Orcus"
+}, {
+  "name" : "RANDOM5",
+  "chance" : 14,
+  "flavor" : "Random Ship: Merrow's Marrow"
+}, {
+  "name" : "RANDOM6",
+  "chance" : 14,
+  "flavor" : "Random Ship: Winged Gourmet"
+}, {
+  "name" : "RANDOM7",
+  "chance" : 14,
+  "flavor" : "Random Ship: The Dreadnaught"
+}, {
+  "name" : "RANDOM8",
+  "chance" : 14,
+  "flavor" : "Random Ship: Percy Jackson's Ship"
+}, {
+  "name" : "RANDOM9",
+  "chance" : 14,
+  "flavor" : "Random Ship:  The S.K. Hullcrusher"
+}, {
+  "name" : "DRAGON1",
+  "chance" : 21,
+  "flavor" : "DragonShip:  Waverunner"
+}, {
+  "name" : "DRAGON2",
+  "chance" : 21,
+  "flavor" : "DragonShip:  Windrunner"
+}, {
+  "name" : "DRAGON3",
+  "chance" : 21,
+  "flavor" : "DragonShip:  Waterrunner"
+}, {
+  "name" : "DREADBURG",
+  "chance" : 378,
+  "flavor" : "Only in the North: Random Ship: Dreadburg"
+}, {
+  "name" : "DRYAD",
+  "chance" : 126,
+  "flavor" : "Drifting Dryad"
+}, {
+  "name" : "OTHER1",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: Barrel of fine Wine"
+}, {
+  "name" : "OTHER2",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: Floating Boulder"
+}, {
+  "name" : "OTHER3",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: Coffin"
+}, {
+  "name" : "OTHER4",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: Giant Tentacles grab the ship"
+}, {
+  "name" : "OTHER5",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: giant sea beast follows the ship"
+}, {
+  "name" : "OTHER6",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: find a rusted anchor"
+}, {
+  "name" : "OTHER7",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: naga on piece of driftwood"
+}, {
+  "name" : "OTHER8",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: dolphin follows the ship"
+}, {
+  "name" : "OTHER9",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: a large object bumbs against the ship"
+}, {
+  "name" : "OTHER10",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: a glimmer is spotted in the distance"
+}, {
+  "name" : "OTHER11",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: a kelp angler floats past the ship"
+}, {
+  "name" : "OTHER12",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: an octopus tree grapples the ship"
+}, {
+  "name" : "OTHER13",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: a selkie swins up to the ship"
+}, {
+  "name" : "OTHER14",
+  "chance" : 9,
+  "flavor" : "Random Ocean Encounter: the severed tentacle of a sea monster"
+}, {
+  "name" : "KRAKENSEAL",
+  "chance" : 126,
+  "flavor" : "Krakenseal (update at level 10)"
+}, {
+  "name" : "KRAKEN_COVENANT",
+  "chance" : 126,
+  "flavor" : "Kraken Covenant (update at level 15)"
+}, {
+  "name" : "RAMEN",
+  "chance" : 315,
+  "flavor" : "Pursuit of Perfection: Ramen"
+}, {
+  "name" : "FISHER",
+  "chance" : 315,
+  "flavor" : "Pursuit of Perfection: Fisher"
+}, {
+  "name" : "THUNDER_WORM",
+  "chance" : 126,
+  "flavor" : "Thunder Worm"
+}, {
+  "name" : "WHALE_CREW",
+  "chance" : 278,
+  "flavor" : "Whale Crew"
+}, {
+  "name" : "DRAGONFLIES",
+  "chance" : 126,
+  "flavor" : "Dragon flies overhead"
+}, {
+  "name" : "JELLYFISH",
+  "chance" : 126,
+  "flavor" : "Atmospheric Jellyfish"
+}, {
+  "name" : "TRADER",
+  "chance" : 14,
+  "flavor" : "Human Trader Ship"
+}, {
+  "name" : "TRADER1",
+  "chance" : 14,
+  "flavor" : "Gnome Trader Ship"
+}, {
+  "name" : "TRADER2",
+  "chance" : 14,
+  "flavor" : "Elf Trader Ship"
+}, {
+  "name" : "TRADER3",
+  "chance" : 14,
+  "flavor" : "Orc Ship"
+}, {
+  "name" : "TRADER4",
+  "chance" : 14,
+  "flavor" : "Inquisitions Night's Lightning"
+}, {
+  "name" : "TRADER5",
+  "chance" : 14,
+  "flavor" : "Inquisitions Damned Trumpet of the Sea"
+}, {
+  "name" : "TRADER6",
+  "chance" : 14,
+  "flavor" : "Inquisitions Gold Thunder of the Sea"
+}, {
+  "name" : "TRADER7",
+  "chance" : 14,
+  "flavor" : "Inquisitions Disgrace of Hades"
+}, {
+  "name" : "TRADER0",
+  "chance" : 14,
+  "flavor" : "Inquisitions Howling Prophet"
+}, {
+  "name" : "EMPTY",
+  "chance" : 8757,
+  "flavor" : ""
+} ]

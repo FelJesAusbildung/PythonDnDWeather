@@ -1,0 +1,57 @@
+[ {
+  "name" : "PLACEHOLDER",
+  "nonApocalypseChance" : 0,
+  "apocalypseChance" : 0,
+  "minSpeed" : 0,
+  "maxSpeed" : 0,
+  "flavor" : "Congrats, you rolled a Placeholder!",
+  "sailSpeedModifier" : 0
+}, {
+  "name" : "NONE",
+  "nonApocalypseChance" : 5,
+  "apocalypseChance" : 0,
+  "minSpeed" : 0,
+  "maxSpeed" : 0,
+  "flavor" : "Calm Winds",
+  "sailSpeedModifier" : 0
+}, {
+  "name" : "LIGHT",
+  "nonApocalypseChance" : 65,
+  "apocalypseChance" : 0,
+  "minSpeed" : 1,
+  "maxSpeed" : 16,
+  "flavor" : "Light Winds",
+  "sailSpeedModifier" : 1
+}, {
+  "name" : "MODERATE",
+  "nonApocalypseChance" : 10,
+  "apocalypseChance" : 11,
+  "minSpeed" : 17,
+  "maxSpeed" : 32,
+  "flavor" : "Moderate Winds",
+  "sailSpeedModifier" : 2
+}, {
+  "name" : "HEAVY",
+  "nonApocalypseChance" : 10,
+  "apocalypseChance" : 9,
+  "minSpeed" : 33,
+  "maxSpeed" : 48,
+  "flavor" : "Heavy Winds",
+  "sailSpeedModifier" : 3
+}, {
+  "name" : "SEVERE",
+  "nonApocalypseChance" : 9,
+  "apocalypseChance" : 1,
+  "minSpeed" : 49,
+  "maxSpeed" : 80,
+  "flavor" : "Severe Winds",
+  "sailSpeedModifier" : 0
+}, {
+  "name" : "WINDSTORM",
+  "nonApocalypseChance" : 1,
+  "apocalypseChance" : 1,
+  "minSpeed" : 81,
+  "maxSpeed" : 240,
+  "flavor" : "Windstorm or Hurricane Winds",
+  "sailSpeedModifier" : 0
+} ]
