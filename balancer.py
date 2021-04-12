@@ -25,7 +25,9 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
     for chance in chances:
         corrected_chances.append(int((chance / chance_divisor) * inflation_factor))
     sum_corrected_chances = sum(corrected_chances)
-    return corrected_chances, sum_corrected_chances
+    for item, chance in zip(items, chances):
+        item[key] = chance
+    return items
 
 
 def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
