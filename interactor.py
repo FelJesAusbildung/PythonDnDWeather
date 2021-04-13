@@ -67,6 +67,13 @@ def modify(filename):
         edited_item = save_field_to_item(edited_field, selected_item)
         items = save_item_to_items(edited_item, items)
         done = not confirm_done()
+    print("Balance New Chances?")
+    if bool_decider():
+        items = balance(items, total=100000)
+        print(items)
+        print("Items Were Rebalanced To {0}%".format(get_total_chance(items)/1000))
+    else:
+        print("Chances Were Not Balanced! This Leads To Strange Chances")
     print("Write Modified Json To File?")
     if bool_decider():
         write_items_to_file(filename, items)
