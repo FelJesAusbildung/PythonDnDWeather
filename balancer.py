@@ -18,32 +18,40 @@ def get_chances(items, key='chance'):
     return chances
 
 
-def balance(items, key='chance', total=100, inflation_factor=1000):
+def get_total_chance(items, key='chance'):
     chances = get_chances(items, key)
-    chance_divisor = sum(chances) / total
-    corrected_chances = []
-    for chance in chances:
-        corrected_chances.append(int((chance / chance_divisor) * inflation_factor))
-    sum_corrected_chances = sum(corrected_chances)
+    return sum(chances)
+
+
+def balance(items, key='chance', total=100, inflation_factor=1000):
+    chances = get_corrected_chances(inflation_factor, items, key, total)
     for item, chance in zip(items, chances):
         item[key] = chance
     return items
 
 
-def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
+def get_corrected_chances(inflation_factor, items, key, total):
     chances = get_chances(items, key)
-    print("old chances: ", chances)
-    balanced_chances, new_total = balance(items, key, inflation_factor)
-    print("rebalanced chances: ", balanced_chances, "Total: ", new_total)
-    return balanced_chances, new_total
+    chance_divisor = sum(chances) / total
+    corrected_chances = []
+    for chance in chances:
+        corrected_chances.append(int((chance / chance_divisor) * inflation_factor))
+    return chances
+
+
+def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
+    old_chances = get_chances(items, key)
+    print("old chances: ", old_chances)
+    balanced_items = balance(items, key, inflation_factor)
+    balanced_chances = get_chances(balanced_items, key)
+    print("rebalanced chances: ", balanced_chances, "Total: ", get_total_chance(items, key))
+    return balanced_items
 
 
 def balance_file(filename, key='chance', total=100, inflation_factor=1000):
     items = items_from_json(filename)
-    balanced_chances, _ = balance_with_output(items, key, inflation_factor)
-    for item, chance in zip(items, balanced_chances):
-        item[key] = chance
-    write_items_to_file(filename, items)
+    balanced_items = balance_with_output(items, key, inflation_factor)
+    write_items_to_file(filename, balanced_items)
 
 
 if __name__ == "__main__":
