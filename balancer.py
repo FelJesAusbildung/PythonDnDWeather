@@ -24,7 +24,7 @@ def get_total_chance(items, key='chance'):
 
 
 def balance(items, key='chance', total=100, inflation_factor=1000):
-    chances = get_corrected_chances(inflation_factor, items, key, total)
+    chances = get_corrected_chances(inflation_factor=inflation_factor, items=items, key=key, total=total)
     for item, chance in zip(items, chances):
         item[key] = chance
     return items
@@ -36,26 +36,27 @@ def get_corrected_chances(inflation_factor, items, key, total):
     corrected_chances = []
     for chance in chances:
         corrected_chances.append(int((chance / chance_divisor) * inflation_factor))
-    return chances
+    return corrected_chances
 
 
 def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
     old_chances = get_chances(items, key)
-    print("old chances: ", old_chances)
-    balanced_items = balance(items, key, inflation_factor)
+    print("old chances: ", old_chances, "Total:", get_total_chance(items, key))
+    balanced_items = balance(items=items, key=key, inflation_factor=inflation_factor, total=total)
     balanced_chances = get_chances(balanced_items, key)
-    print("rebalanced chances: ", balanced_chances, "Total: ", get_total_chance(items, key))
+    print("rebalanced chances: ", balanced_chances, "Total:", get_total_chance(items, key))
     return balanced_items
 
 
 def balance_file(filename, key='chance', total=100, inflation_factor=1000):
     items = items_from_json(filename)
-    balanced_items = balance_with_output(items, key, inflation_factor)
+    balanced_items = balance_with_output(items=items, key=key, inflation_factor=inflation_factor, total=total)
     write_items_to_file(filename, balanced_items)
 
 
 if __name__ == "__main__":
-    balance_file("Weather.json")
-    balance_file("Wind.json", key='apocalypseChance')
-    balance_file("Wind.json", key='nonApocalypseChance')
-    balance_file("SailingEncounter.json")
+    # balance_file("Weather.json")
+    # balance_file("Wind.json", key='apocalypseChance')
+    # balance_file("Wind.json", key='nonApocalypseChance')
+    # balance_file("SailingEncounter.json")
+    balance_with_output(items_from_json("Weather.json"), total=50)
