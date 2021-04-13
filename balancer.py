@@ -30,7 +30,7 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
     return items
 
 
-def get_corrected_chances(inflation_factor, items, key, total):
+def get_corrected_chances(items, key, total, inflation_factor):
     new_total = total/inflation_factor
     chances = get_chances(items, key)
     chance_divisor = sum(chances) / new_total
@@ -60,4 +60,4 @@ if __name__ == "__main__":
     # balance_file("Wind.json", key='apocalypseChance')
     # balance_file("Wind.json", key='nonApocalypseChance')
     # balance_file("SailingEncounter.json")
-    balance_with_output(items_from_json("SailingEncounter.json"), total=100)
+    balance_with_output(items_from_json("SailingEncounter.json"), total=1000000)
