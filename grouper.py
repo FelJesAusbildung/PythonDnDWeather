@@ -30,20 +30,24 @@ def gen_groups_list(items, group_names):
     return groups_list
 
 
-def print_groups_details(groups):
-    print(groups)
-    for group_name in groups:
-        group, group_total = get_group(encounters, group_name['name'])
-        print(group_total, group)
-
-
 def gen_groups_json(filename, items, items_names):
     groups = gen_groups_list(items, items_names)
     write_items_to_file(filename, groups)
 
 
-if __name__ == "__main__":
+def gen_json_for_encounters():
     encounters = items_from_json("SailingEncounter.json")
     encounter_group_names = ["damned", "damned9", "damned11", "damned17", "unique", "unique_non", "unique_dragon",
                              "unique_inquisition", "trader", "other"]
     gen_groups_json("Groups.json", encounters, encounter_group_names)
+
+
+def print_groups_details(groups, items):
+    print(groups)
+    for group_name in groups:
+        group, group_total = get_group(items, group_name['name'])
+        print(group_total, group)
+
+
+if __name__ == "__main__":
+    pass
