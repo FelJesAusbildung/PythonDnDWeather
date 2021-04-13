@@ -45,5 +45,5 @@ def gen_groups_json(filename, items, items_names):
 if __name__ == "__main__":
     encounters = items_from_json("SailingEncounter.json")
     encounter_group_names = ["damned", "damned9", "damned11", "damned17", "unique", "unique_non", "unique_dragon",
-                             "unique_inquisition", "trader"]
+                             "unique_inquisition", "trader", "other"]
     gen_groups_json("Groups.json", encounters, encounter_group_names)
