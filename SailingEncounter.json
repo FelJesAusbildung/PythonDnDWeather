@@ -65,67 +65,67 @@
     "flavor": "Krakenblade"
   },
   {
-    "name": "RANDOM1",
+    "name": "UNIQUE_NON1",
     "chance": 1120,
     "flavor": "Random Ship: The Indomitable"
   },
   {
-    "name": "RANDOM2",
+    "name": "UNIQUE_NON2",
     "chance": 1120,
     "flavor": "Random Ship: Silence"
   },
   {
-    "name": "RANDOM3",
+    "name": "UNIQUE_NON3",
     "chance": 1120,
     "flavor": "Random Ship: Hunger"
   },
   {
-    "name": "RANDOM4",
+    "name": "UNIQUE_NON4",
     "chance": 1120,
     "flavor": "Random Ship: Bella Orcus"
   },
   {
-    "name": "RANDOM5",
+    "name": "UNIQUE_NON5",
     "chance": 1120,
     "flavor": "Random Ship: Merrow's Marrow"
   },
   {
-    "name": "RANDOM6",
+    "name": "UNIQUE_NON6",
     "chance": 1120,
     "flavor": "Random Ship: Winged Gourmet"
   },
   {
-    "name": "RANDOM7",
+    "name": "UNIQUE_NON7",
     "chance": 1120,
     "flavor": "Random Ship: The Dreadnaught"
   },
   {
-    "name": "RANDOM8",
+    "name": "UNIQUE_NON8",
     "chance": 1120,
     "flavor": "Random Ship: Percy Jackson's Ship"
   },
   {
-    "name": "RANDOM9",
+    "name": "UNIQUE_NON9",
     "chance": 1120,
     "flavor": "Random Ship:  The S.K. Hullcrusher"
   },
   {
-    "name": "DRAGON1",
+    "name": "UNIQUE_DRAGON1",
     "chance": 1680,
     "flavor": "DragonShip:  Waverunner"
   },
   {
-    "name": "DRAGON2",
+    "name": "UNIQUE_DRAGON2",
     "chance": 1680,
     "flavor": "DragonShip:  Windrunner"
   },
   {
-    "name": "DRAGON3",
+    "name": "UNIQUE_DRAGON3",
     "chance": 1680,
     "flavor": "DragonShip:  Waterrunner"
   },
   {
-    "name": "DREADBURG",
+    "name": "UNIQUE_DREADBURG",
     "chance": 30240,
     "flavor": "Only in the North: Random Ship: Dreadburg"
   },
@@ -265,27 +265,27 @@
     "flavor": "Orc Ship"
   },
   {
-    "name": "TRADER4",
+    "name": "UNIQUE_INQUISITION4",
     "chance": 1120,
     "flavor": "Inquisitions Night's Lightning"
   },
   {
-    "name": "TRADER5",
+    "name": "UNIQUE_INQUISITION5",
     "chance": 1120,
     "flavor": "Inquisitions Damned Trumpet of the Sea"
   },
   {
-    "name": "TRADER6",
+    "name": "UNIQUE_INQUISITION6",
     "chance": 1120,
     "flavor": "Inquisitions Gold Thunder of the Sea"
   },
   {
-    "name": "TRADER7",
+    "name": "UNIQUE_INQUISITION7",
     "chance": 1120,
     "flavor": "Inquisitions Disgrace of Hades"
   },
   {
-    "name": "TRADER0",
+    "name": "UNIQUE_INQUISITION0",
     "chance": 1120,
     "flavor": "Inquisitions Howling Prophet"
   },
