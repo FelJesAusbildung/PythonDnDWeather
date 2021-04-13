@@ -1,29 +1,38 @@
 [
   {
-    "name": "damned"
+    "name": "damned",
+    "total_chance": 50400
   },
   {
-    "name": "damned9"
+    "name": "damned9",
+    "total_chance": 10080
   },
   {
-    "name": "damned11"
+    "name": "damned11",
+    "total_chance": 10080
   },
   {
-    "name": "damned17"
+    "name": "damned17",
+    "total_chance": 10080
   },
   {
-    "name": "unique"
+    "name": "unique",
+    "total_chance": 20720
   },
   {
-    "name": "unique_non"
+    "name": "unique_non",
+    "total_chance": 10080
   },
   {
-    "name": "unique_dragon"
+    "name": "unique_dragon",
+    "total_chance": 5040
   },
   {
-    "name": "unique_inquisition"
+    "name": "unique_inquisition",
+    "total_chance": 5600
   },
   {
-    "name": "trader"
+    "name": "trader",
+    "total_chance": 4480
   }
 ]
