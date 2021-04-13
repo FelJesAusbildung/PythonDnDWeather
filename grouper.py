@@ -17,33 +17,33 @@ def insert(group, items):
     return items
 
 
-def test():
-    encounters_test = items_from_json("SailingEncounter.json")
-    randoms, randoms_total = get_group(encounters_test, "random")
-    print(randoms_total)
-    print("-------------------------------------------------")
-    randoms[3]['chance'] = 2000
-    randoms = balance_with_output(randoms, total=randoms_total, key='chance', inflation_factor=1)
-    insert(randoms, encounters_test)
+def gen_group_dict(name, items):
+    _, group_total = get_group(items, name)
+    return {'name': name, 'total_chance': group_total}
 
 
-# unnecessary as a dict but good choice if groups need to be expanded later
-def gen_group(name):
-    return {'name': name}
+def gen_groups_list(items, group_names):
+    groups_list = list()
+    for temp_group_name in group_names:
+        temp_group = gen_group_dict(temp_group_name, items)
+        groups_list.append(temp_group)
+    return groups_list
 
 
-if __name__ == "__main__":
-    groups = list()
-    group_names = ["damned", "damned9", "damned11", "damned17", "unique", "unique_non", "unique_dragon", "unique_inquisition", "trader"]
-    encounters = items_from_json("SailingEncounter.json")
-    for group_name in group_names:
-        group = gen_group(group_name)
-        _, group_total = get_group(encounters, group_name)
-        group['total_chance'] = group_total
-        groups.append(group)
+def print_groups_details(groups):
     print(groups)
-    with open("Groups.json", "w") as file:
-        json.dump(groups, file, indent=2)
     for group_name in groups:
         group, group_total = get_group(encounters, group_name['name'])
         print(group_total, group)
+
+
+def gen_groups_json(filename, items, items_names):
+    groups = gen_groups_list(items, items_names)
+    write_items_to_file(filename, groups)
+
+
+if __name__ == "__main__":
+    encounters = items_from_json("SailingEncounter.json")
+    encounter_group_names = ["damned", "damned9", "damned11", "damned17", "unique", "unique_non", "unique_dragon",
+                             "unique_inquisition", "trader"]
+    gen_groups_json("Groups.json", encounters, encounter_group_names)
