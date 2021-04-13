@@ -20,7 +20,9 @@ def insert(group, items):
 if __name__ == "__main__":
     encounters = items_from_json("SailingEncounter.json")
     randoms, randoms_total = get_group(encounters, "random")
+    print(randoms_total)
     print("-------------------------------------------------")
-    randoms = balance_with_output(randoms, total=100, key='chance')
+    randoms[3]['chance'] = 2000
+    randoms = balance_with_output(randoms, total=randoms_total, key='chance', inflation_factor=1)
     insert(randoms, encounters)
     pass
