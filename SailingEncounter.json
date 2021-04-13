@@ -291,7 +291,7 @@
   },
   {
     "name": "EMPTY",
-    "chance": 700560,
+    "chance": 700000,
     "flavor": ""
   }
 ]
