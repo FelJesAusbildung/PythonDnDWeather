@@ -31,11 +31,11 @@ def edit_field(field):
     print(field)
     if type(field[1]) == str:
         new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
-    if type(field[1]) == int:
+    elif type(field[1]) == int:
         new_value = int(input('Enter A New Value For "{0}"\n'.format(field[0])))
-    if type(field[1]) == float:
+    elif type(field[1]) == float:
         new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
-    if type(field[1]) == bool:
+    elif type(field[1]) == bool:
         new_value = bool_decider()
     return field[0], new_value
 
