@@ -1,3 +1,4 @@
+import grouper
 from balancer import *
 
 
@@ -56,8 +57,13 @@ def confirm_done():
     return bool_decider()
 
 
-def modify(filename, keys=['chance']):
-    items = items_from_json(filename)
+def interact_main(filename, items, keys=['chance']):
+    items = interact_modify(items, keys=keys)
+    items = interact_balance(items, keys=keys)
+    interact_save(items, filename)
+
+
+def interact_modify(items, keys=['chance']):
     done = False
     while not done:
         selected_item = show_and_select(items)
@@ -68,6 +74,11 @@ def modify(filename, keys=['chance']):
         edited_item = save_field_to_item(edited_field, selected_item)
         items = save_item_to_items(edited_item, items)
         done = not confirm_done()
+    items = interact_balance(items, keys)
+    return items
+
+
+def interact_balance(items, keys):
     print("Balance New Chances?")
     if bool_decider():
         for key in keys:
@@ -78,6 +89,10 @@ def modify(filename, keys=['chance']):
             print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key) / 10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
+    return items
+
+
+def interact_save(items, filename):
     print("Write Modified Json To File?")
     if bool_decider():
         write_items_to_file(filename, items)
@@ -87,10 +102,12 @@ def modify(filename, keys=['chance']):
 
 
 if __name__ == "__main__":
-    modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounters.json"]
+    modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounter.json"]
     pick = show_and_select(modifiable)
+    pick_items = items_from_json(pick)
     if pick is "Wind.json":
-        modify(pick, keys=['apocalypseChance', 'nonApocalypseChance'])
+        interact_main(pick, pick_items, keys=['apocalypseChance', 'nonApocalypseChance'])
+    elif pick is "SailingEncounter.json":
+        print(pick_items)
     else:
-        modify(pick)
-    # old_test(weather)
+        interact_main(pick, pick_items)
