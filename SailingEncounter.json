@@ -6,12 +6,12 @@
   },
   {
     "name": "RUINS",
-    "chance": 30240,
+    "chance": 30000,
     "flavor": "Spectre's Ruins"
   },
   {
     "name": "TEMPLE",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Temple Being"
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "name": "KRAKENBLADE",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Krakenblade"
   },
   {
@@ -126,12 +126,12 @@
   },
   {
     "name": "DREADBURG",
-    "chance": 30240,
+    "chance": 30000,
     "flavor": "Only in the North: Random Ship: Dreadburg"
   },
   {
     "name": "DRYAD",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Drifting Dryad"
   },
   {
@@ -206,62 +206,62 @@
   },
   {
     "name": "KRAKENSEAL",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Krakenseal (update at level 10)"
   },
   {
     "name": "KRAKEN_COVENANT",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Kraken Covenant (update at level 15)"
   },
   {
     "name": "RAMEN",
-    "chance": 25200,
+    "chance": 25000,
     "flavor": "Pursuit of Perfection: Ramen"
   },
   {
     "name": "FISHER",
-    "chance": 25200,
+    "chance": 25000,
     "flavor": "Pursuit of Perfection: Fisher"
   },
   {
     "name": "THUNDER_WORM",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Thunder Worm"
   },
   {
     "name": "WHALE_CREW",
-    "chance": 22240,
+    "chance": 30000,
     "flavor": "Whale Crew"
   },
   {
     "name": "DRAGONFLIES",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Dragon flies overhead"
   },
   {
     "name": "JELLYFISH",
-    "chance": 10080,
+    "chance": 10000,
     "flavor": "Atmospheric Jellyfish"
   },
   {
     "name": "TRADER",
-    "chance": 1120,
+    "chance": 5000,
     "flavor": "Human Trader Ship"
   },
   {
     "name": "TRADER1",
-    "chance": 1120,
+    "chance": 1000,
     "flavor": "Gnome Trader Ship"
   },
   {
     "name": "TRADER2",
-    "chance": 1120,
+    "chance": 2000,
     "flavor": "Elf Trader Ship"
   },
   {
     "name": "TRADER3",
-    "chance": 1120,
+    "chance": 2000,
     "flavor": "Orc Ship"
   },
   {
@@ -291,7 +291,7 @@
   },
   {
     "name": "EMPTY",
-    "chance": 700560,
+    "chance": 700000,
     "flavor": ""
   }
 ]
