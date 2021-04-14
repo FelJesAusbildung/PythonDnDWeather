@@ -4,13 +4,6 @@ from balancer import *
 def show_and_select(items, key=['chance']):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count, item))
-        # if type(item) is dict:
-        #     if key[1] is not None:
-        #         print('[{0}] {1} {2}%'.format(count, item['name'], item[key[0]]/10000, item[key[1]]/10000))
-        #     else:
-        #         print('[{0}] {1} {2}%'.format(count, item['name'], item[key[0]]/10000))
-        # else:
-        #     print("[{0}] {1}".format(count, item))
     selection = int(input("Input Int To Select Item To Modify\n"))
     return items[selection]
 
