@@ -1,9 +1,16 @@
 from balancer import *
 
 
-def show_and_select(items):
+def show_and_select(items, key=['chance']):
     for count, item in enumerate(items):
-        print('[{0}] {1} {2}%'.format(count, item['name'], item['chance']/10000))
+        print("[{0}] {1}".format(count, item))
+        # if type(item) is dict:
+        #     if key[1] is not None:
+        #         print('[{0}] {1} {2}%'.format(count, item['name'], item[key[0]]/10000, item[key[1]]/10000))
+        #     else:
+        #         print('[{0}] {1} {2}%'.format(count, item['name'], item[key[0]]/10000))
+        # else:
+        #     print("[{0}] {1}".format(count, item))
     selection = int(input("Input Int To Select Item To Modify\n"))
     return items[selection]
 
@@ -56,7 +63,7 @@ def confirm_done():
     return bool_decider()
 
 
-def modify(filename):
+def modify(filename, keys=['chance']):
     items = items_from_json(filename)
     done = False
     while not done:
@@ -70,9 +77,12 @@ def modify(filename):
         done = not confirm_done()
     print("Balance New Chances?")
     if bool_decider():
-        items = balance(items, total=1000000)
+        for key in keys:
+            print(key)
+            items = balance(items, total=1000000, key=key)
         print(items)
-        print("Items Were Rebalanced To {0}%".format(get_total_chance(items)/10000))
+        for key in keys:
+            print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key)/10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
     print("Write Modified Json To File?")
@@ -92,5 +102,10 @@ def old_test(weather):
 
 
 if __name__ == "__main__":
-    modify("Weather.json")
+    modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounters.json"]
+    pick = show_and_select(modifiable)
+    if pick is "Wind.json":
+        modify(pick, keys=['apocalypseChance', 'nonApocalypseChance'])
+    else:
+        modify(pick)
     # old_test(weather)
