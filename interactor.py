@@ -3,7 +3,7 @@ from balancer import *
 
 def show_and_select(items):
     for count, item in enumerate(items):
-        print('[{0}] {1} {2}'.format(count, item['name'], item['chance']))
+        print('[{0}] {1} {2}%'.format(count, item['name'], item['chance']/10000))
     selection = int(input("Input Int To Select Item To Modify\n"))
     return items[selection]
 
@@ -28,7 +28,6 @@ def bool_decider():
 
 
 def edit_field(field):
-    print(field)
     if type(field[1]) == str:
         new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
     elif type(field[1]) == int:
@@ -62,16 +61,18 @@ def modify(filename):
     done = False
     while not done:
         selected_item = show_and_select(items)
+        print(selected_item)
         selected_field = select_and_modify(selected_item)
+        print(selected_field)
         edited_field = edit_field(selected_field)
         edited_item = save_field_to_item(edited_field, selected_item)
         items = save_item_to_items(edited_item, items)
         done = not confirm_done()
     print("Balance New Chances?")
     if bool_decider():
-        items = balance(items, total=100000)
+        items = balance(items, total=1000000)
         print(items)
-        print("Items Were Rebalanced To {0}%".format(get_total_chance(items)/1000))
+        print("Items Were Rebalanced To {0}%".format(get_total_chance(items)/10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
     print("Write Modified Json To File?")
