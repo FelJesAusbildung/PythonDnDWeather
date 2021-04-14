@@ -82,7 +82,7 @@ def modify(filename, keys=['chance']):
             items = balance(items, total=1000000, key=key)
         print(items)
         for key in keys:
-            print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key)/10000))
+            print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key) / 10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
     print("Write Modified Json To File?")
@@ -91,14 +91,6 @@ def modify(filename, keys=['chance']):
         print("File Saved!")
     else:
         print("All Changes Were Discarded!")
-
-
-def old_test(weather):
-    selected_item = show_and_select(weather)
-    selected_field = select_and_modify(selected_item)
-    edited_field = edit_field(selected_field)
-    edited_item = save_field_to_item(edited_field, selected_item)
-    print(save_item_to_items(edited_item, weather))
 
 
 if __name__ == "__main__":
