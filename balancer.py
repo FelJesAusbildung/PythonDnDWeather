@@ -71,23 +71,14 @@ def test_for_group(items):
 
 def balance_with_groups(items, total=1000000, key='chance'):
     has_groups = test_for_group(items)
-    print("working on items:", items)
     for item in items:
-        print("working on item:", item)
         if 'identifier' in item:
-            print("getting chance for group:", item)
             item['chance'] = item['identifier']['total_chance']
-    # print(json.dumps(items, indent=2))
-    print("balanced total")
     balance(items, total=total)
-    # print(json.dumps(items, indent=2))
     for item in items:
         if 'identifier' in item:
-            print("overwriting group:", item)
             item['identifier']['total_chance'] = item['chance']
-    # print(json.dumps(items, indent=2))
     if has_groups:
-        print("working on deeper groups")
         for item in items:
             if 'identifier' in item:
                 balance_with_groups(item['content'], item['identifier']['total_chance'])
