@@ -1,5 +1,6 @@
 import grouper
 from balancer import *
+from grouper import generate_groups
 
 
 def show_and_select(items, key=['chance']):
@@ -24,6 +25,8 @@ def display(entry):
         string_placeholder += "apo_chance: " + str(entry['apocalypseChance']/10000) + "% "
     if "nonApocalypseChance" in entry:
         string_placeholder += "non_apo_chance: " + str(entry['nonApocalypseChance']/10000) + "% "
+    if "identifier" in entry:
+        string_placeholder += "Group: " + entry['identifier']['name']
     if string_placeholder is not "":
         return string_placeholder
 
@@ -54,6 +57,8 @@ def edit_field(field):
         new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
     elif type(field[1]) == bool:
         new_value = bool_decider()
+    elif type(field) == list:
+        print("test")
     return field[0], new_value
 
 
@@ -66,6 +71,21 @@ def save_item_to_items(new_item, items):
     for item in items:
         if item['name'] == new_item['name']:
             item == new_item
+    return items
+
+
+def save_item_to_group(new_item, group):
+    for item in group['content']:
+        if item['name'] == new_item['name']:
+            item == new_item
+    return group
+
+
+def save_group_to_items(new_group, items):
+    for item in items:
+        if 'identifier' in item:
+            if item['identifier']['name'] == new_group['identifier']['name']:
+                item == new_group
     return items
 
 
@@ -84,12 +104,23 @@ def interact_modify(items, keys=['chance']):
     done = False
     while not done:
         selected_item = show_and_select(items)
-        print(selected_item)
-        selected_field = select_and_modify(selected_item)
-        print(selected_field)
-        edited_field = edit_field(selected_field)
-        edited_item = save_field_to_item(edited_field, selected_item)
-        items = save_item_to_items(edited_item, items)
+        if 'content' in selected_item:
+            selected_group = selected_item
+            selected_item = show_and_select(selected_item['content'])
+            print(selected_item)
+            selected_field = select_and_modify(selected_item)
+            print(selected_field)
+            edited_field = edit_field(selected_field)
+            edited_item = save_field_to_item(edited_field, selected_item)
+            edited_group = save_item_to_group(edited_item, selected_group)
+            items = save_group_to_items(edited_group, items)
+        else:
+            print(selected_item)
+            selected_field = select_and_modify(selected_item)
+            print(selected_field)
+            edited_field = edit_field(selected_field)
+            edited_item = save_field_to_item(edited_field, selected_item)
+            items = save_item_to_items(edited_item, items)
         done = not confirm_done()
     return items
 
@@ -124,6 +155,8 @@ if __name__ == "__main__":
     if pick is "Wind.json":
         interact_main(pick, pick_items, keys=['apocalypseChance', 'nonApocalypseChance'])
     elif pick is "SailingEncounter.json":
-        print(pick_items)
+        group_data = items_from_json("Groups.json")
+        generate_groups(pick_items, group_data)
+        interact_main(pick, pick_items)
     else:
         interact_main(pick, pick_items)
