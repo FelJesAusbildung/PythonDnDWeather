@@ -1,4 +1,5 @@
-from balancer import *
+import json
+from balancer import get_total_chance, items_from_json, write_items_to_file
 
 
 def get_group(items, identifier, key='chance'):
@@ -35,7 +36,7 @@ def build_group(items, group_identifier):
     else:
         for item in return_items:
             return_groups.append(item)
-        total_chance = get_total_chance(return_groups)
+        total_chance = group_identifier['total_chance']
         return_group_dict = {"identifier": {"name": group_identifier['name'], "total_chance": total_chance},
                              "content": return_groups}
     return return_group_dict
