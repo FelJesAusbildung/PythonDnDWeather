@@ -35,7 +35,6 @@ def build_group(items, group_identifier):
     else:
         for item in return_items:
             return_groups.append(item)
-        # print(return_groups)
         total_chance = get_total_chance(return_groups)
         return_group_dict = {"identifier": {"name": group_identifier['name'], "total_chance": total_chance},
                              "content": return_groups}
@@ -89,45 +88,6 @@ def replace(items, entry_to_replace, replacing_entries):
             for replacing_item in reversed(replacing_entries):
                 items.insert(count, replacing_item)
             return items
-
-
-def insert_group(items, replacing_group):
-    position = 0
-    items_to_remove = []
-    for count, item in enumerate(items):
-        if 'identifier' in item:
-            continue
-        if replacing_group['identifier']['name'].upper() in item['name']:
-            items_to_remove.append(item)
-            if not position:
-                position = count
-    for item in items_to_remove:
-        items.remove(item)
-    items.insert(position, replacing_group)
-    return items
-
-
-def extract_group(items, group_identifier):
-    contents_placeholder, _ = get_group(items, group_identifier['name'])
-    for group_item in contents_placeholder:
-        for item in items:
-            if item['name'] == group_item['name']:
-                items.remove(item)
-    return items, contents_placeholder
-
-
-def groupify(items, groups):
-    grouped_items = []
-    inserted = list(items)
-    for group_identifier in groups:
-        _, contents = extract_group(inserted, group_identifier)
-        temp_group = {"identifier": group_identifier, "content": contents}
-        insert_group(inserted, temp_group)
-        grouped_items.append(temp_group)
-        print(grouped_items)
-    for group_to_insert in reversed(grouped_items):
-        inserted = insert_group(inserted, group_to_insert)
-    return inserted
 
 
 def insert(subgroup, total):
