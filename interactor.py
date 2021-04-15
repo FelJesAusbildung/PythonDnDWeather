@@ -4,15 +4,35 @@ from balancer import *
 
 def show_and_select(items, key=['chance']):
     for count, item in enumerate(items):
-        print("[{0}] {1}".format(count, item))
+        print("[{0}] {1}".format(count, display(item)))
     selection = int(input("Input Int To Select Item To Modify\n"))
-    return items[selection]
+    if type(items) is list:
+        return items[selection]
+    else:
+        return selection
+
+
+def display(entry):
+    string_placeholder = ""
+    if type(entry) is str:
+        return entry
+    if "name" in entry:
+        string_placeholder += entry['name'] + " "
+    if "chance" in entry:
+        string_placeholder += "chance: " + str(entry['chance']/10000) + "% "
+    if "apocalypseChance" in entry:
+        string_placeholder += "apo_chance: " + str(entry['apocalypseChance']/10000) + "% "
+    if "nonApocalypseChance" in entry:
+        string_placeholder += "non_apo_chance: " + str(entry['nonApocalypseChance']/10000) + "% "
+    if string_placeholder is not "":
+        return string_placeholder
 
 
 def select_and_modify(item):
-    for count, field in enumerate(item):
-        print('[{0}] {1}'.format(count, field))
-    selection = int(input("Input Int To Select Field To Modify\n"))
+    # for count, field in enumerate(item):
+    #     print('[{0}] {1}'.format(count, field))
+    # selection = int(input("Input Int To Select Field To Modify\n"))
+    selection = show_and_select(item)
     for count, field in enumerate(item):
         if count == selection:
             return field, item[field]
