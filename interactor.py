@@ -29,9 +29,6 @@ def display(entry):
 
 
 def select_and_modify(item):
-    # for count, field in enumerate(item):
-    #     print('[{0}] {1}'.format(count, field))
-    # selection = int(input("Input Int To Select Field To Modify\n"))
     selection = show_and_select(item)
     for count, field in enumerate(item):
         if count == selection:
