@@ -3,10 +3,16 @@ from balancer import *
 
 def get_group(items, identifier, key='chance'):
     group = []
+    flag = False
     for item in items:
         if identifier.upper() in item['name']:
             group.append(item)
-    return group, get_total_chance(group, key=key)
+        if key in item:
+            flag = True
+    if flag:
+        return group, get_total_chance(group, key=key)
+    else:
+        return group
 
 
 def overwrite(group, items):
@@ -55,15 +61,66 @@ def replace(items, entry_to_replace, replacing_entries):
             items.remove(item)
             for replacing_item in reversed(replacing_entries):
                 items.insert(count, replacing_item)
-            return
+            return items
+
+
+def insert_group(items, replacing_group):
+    position = 0
+    items_to_remove = []
+    for count, item in enumerate(items):
+        if 'identifier' in item:
+            continue
+        if replacing_group['identifier']['name'].upper() in item['name']:
+            items_to_remove.append(item)
+            if not position:
+                position = count
+    for item in items_to_remove:
+        items.remove(item)
+    items.insert(position, replacing_group)
+    return items
+
+
+def extract_group(items, group_identifier):
+    contents_placeholder, _ = get_group(items, group_identifier['name'])
+    for group_item in contents_placeholder:
+        for item in items:
+            if item['name'] == group_item['name']:
+                items.remove(item)
+    return items, contents_placeholder
+
+
+def groupify(items, groups):
+    items_with_groups = []
+    inserted = list(items)
+    for group_identifier in groups:
+        _, contents = extract_group(list(items), group_identifier)
+        temp_group = {"identifier": group_identifier, "content": contents}
+        items_with_groups.append(temp_group)
+    for group_to_insert in items_with_groups:
+        inserted = insert_group(inserted, group_to_insert)
+    return inserted
 
 
 if __name__ == "__main__":
-    list1 = [{"name": "1"}, {"name": "2"}, {"name": "3"}, {"name": "4"}]
-    list2 = [{"name": "a"}, {"name": "b"}, {"name": "c"}, {"name": "d"}]
-    to_replace = list1[2]
-    replace(list1, to_replace, list2)
-    print(list1)
-    replace(list1, {"name": "c"}, [{"name": "z"}])
-    print(list1)
+    groups = items_from_json("Groups.json")
+    encounters = items_from_json("SailingEncounter.json")
+    grouped_items = groupify(encounters, groups)
+    grouped_items_string = json.dumps(grouped_items, indent=2)
+    print(grouped_items_string)
+    write_items_to_file("grouped_encounters_test.json", grouped_items)
+    # for group in groups:
+    #     test1, test2 = extract_group(encounters, group)
+    #     print(test1)
+    #     print(test2)
+    # test1 = [{"name": "A1", "chance": 1}, {"name": "A2", "chance": 1}, {"name": "A3", "chance": 1},
+    #          {"name": "A4", "chance": 1}, {"name": "B1", "chance": 1}, {"name": "B2", "chance": 1},
+    #          {"name": "C1", "chance": 1}, {"name": "C2", "chance": 1}, ]
+    # test2 = {"identifier": {"name": "b", "total_chance": 10}, "contents": [{"name": "B1"}, {"name": "B2"}]}
+    # test3 = [{"name": "a", "total_chance": "10"}, {"name": "b", "total_chance": "5"}]
+    # _, extracted = extract_group(test1, test2['identifier'])
+    # print(json.dumps(insert_group(test1, test2), indent=2))
+    # print(json.dumps(groupify(test1, test3), indent=2))
+    # grouped_tests = groupify(test1, test3)
+    # grouped_tests_strings = json.dumps(grouped_tests, indent=2)
+    # print(grouped_tests_strings)
     pass
