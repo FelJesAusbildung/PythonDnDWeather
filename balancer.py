@@ -22,7 +22,6 @@ def get_total_chance(items, key='chance'):
     chance_placeholder = 0
     for item in items:
         if 'identifier' in item:
-            print("adding up", item)
             chance_placeholder += get_total_chance(item['content'])
         else:
             chance_placeholder += item[key]

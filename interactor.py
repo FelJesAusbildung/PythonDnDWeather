@@ -1,5 +1,5 @@
 from grouper import *
-from balancer import balance_with_groups, balance
+from balancer import balance_with_groups, balance, test_for_group
 
 
 def show_and_select(items, key=['chance']):
@@ -105,15 +105,7 @@ def interact_modify(items, keys=['chance']):
     while not done:
         selected_item = show_and_select(items)
         if 'content' in selected_item:
-            selected_group = selected_item
-            selected_item = show_and_select(selected_item['content'])
-            print(selected_item)
-            selected_field = select_and_modify(selected_item)
-            print(selected_field)
-            edited_field = edit_field(selected_field)
-            edited_item = save_field_to_item(edited_field, selected_item)
-            edited_group = save_item_to_group(edited_item, selected_group)
-            items = save_group_to_items(edited_group, items)
+            interact_modify(selected_item['content'])
         else:
             print(selected_item)
             selected_field = select_and_modify(selected_item)
@@ -129,9 +121,10 @@ def interact_balance(items, keys):
     print("Balance New Chances?")
     if bool_decider():
         for key in keys:
-            print(key)
-            items = balance_with_groups(items, total=1000000, key=key)
-        print(items)
+            if test_for_group(items):
+                items = balance_with_groups(items, total=1000000, key=key)
+            else:
+                items = balance(items, total=1000000, key=key)
         for key in keys:
             print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key) / 10000))
     else:
@@ -158,5 +151,7 @@ if __name__ == "__main__":
         group_data = items_from_json("Groups.json")
         generate_groups(pick_items, group_data)
         interact_main(pick, pick_items)
+    elif pick is "Groups.json":
+        interact_main(pick, pick_items, keys=['total_chance'])
     else:
         interact_main(pick, pick_items)
