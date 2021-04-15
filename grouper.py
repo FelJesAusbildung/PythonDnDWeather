@@ -100,6 +100,25 @@ def generate_groups(items, group_identifiers):
         insert(built, items)
 
 
+def test_for_group(items):
+    there_are_groups = False
+    for item in items:
+        if 'identifier' in item:
+            there_are_groups = True
+    return there_are_groups
+
+
+def ungroup(items):
+    tested = test_for_group(items)
+    while tested:
+        for item in items:
+            if 'identifier' in item:
+                for group_item in item['content']:
+                    items.append(group_item)
+                items.remove(item)
+        tested = test_for_group(items)
+
+
 if __name__ == "__main__":
     groups = items_from_json("Groups.json")
     encounters = items_from_json("SailingEncounter.json")
