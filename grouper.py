@@ -108,19 +108,4 @@ if __name__ == "__main__":
     grouped_items_string = json.dumps(grouped_items, indent=2)
     print(grouped_items_string)
     write_items_to_file("grouped_encounters_test.json", grouped_items)
-    # for group in groups:
-    #     test1, test2 = extract_group(encounters, group)
-    #     print(test1)
-    #     print(test2)
-    # test1 = [{"name": "A1", "chance": 1}, {"name": "A2", "chance": 1}, {"name": "A3", "chance": 1},
-    #          {"name": "A4", "chance": 1}, {"name": "B1", "chance": 1}, {"name": "B2", "chance": 1},
-    #          {"name": "C1", "chance": 1}, {"name": "C2", "chance": 1}, ]
-    # test2 = {"identifier": {"name": "b", "total_chance": 10}, "contents": [{"name": "B1"}, {"name": "B2"}]}
-    # test3 = [{"name": "a", "total_chance": "10"}, {"name": "b", "total_chance": "5"}]
-    # _, extracted = extract_group(test1, test2['identifier'])
-    # print(json.dumps(insert_group(test1, test2), indent=2))
-    # print(json.dumps(groupify(test1, test3), indent=2))
-    # grouped_tests = groupify(test1, test3)
-    # grouped_tests_strings = json.dumps(grouped_tests, indent=2)
-    # print(grouped_tests_strings)
     pass
