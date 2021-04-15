@@ -74,7 +74,6 @@ def interact_modify(items, keys=['chance']):
         edited_item = save_field_to_item(edited_field, selected_item)
         items = save_item_to_items(edited_item, items)
         done = not confirm_done()
-    items = interact_balance(items, keys)
     return items
 
 
