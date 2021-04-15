@@ -93,6 +93,11 @@ def replace(items, entry_to_replace, replacing_entries):
 def insert(subgroup, total):
     total.insert(0, subgroup)
 
+def generate_groups(items, group_identifiers):
+    for group_identifier in group_identifiers:
+        built = build_group(items, group_identifier)
+        insert(built, items)
+
 
 if __name__ == "__main__":
     groups = items_from_json("Groups.json")
@@ -108,9 +113,11 @@ if __name__ == "__main__":
     #     built = get_group_for_extract(test1, group_identifier)
     #     insert(built, test1)
     # print(json.dumps(test1, indent=2))
-    for group_identifier in groups:
-        built = build_group(encounters, group_identifier)
-        insert(built, encounters)
+    # for group_identifier in groups:
+    #     built = build_group(encounters, group_identifier)
+    #     insert(built, encounters)
+    generate_groups(encounters, groups)
     string = json.dumps(encounters, indent=2)
+    print(string)
     write_items_to_file("grouped_encounters_test.json", encounters)
     pass
