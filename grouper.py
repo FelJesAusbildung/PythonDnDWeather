@@ -9,7 +9,7 @@ def get_group(items, identifier, key='chance'):
     return group, get_total_chance(group, key=key)
 
 
-def insert(group, items):
+def overwrite(group, items):
     for item in items:
         for group_item in group:
             if group_item['name'] == item['name']:
@@ -49,5 +49,21 @@ def print_groups_details(groups, items):
         print(group_total, group)
 
 
+def replace(items, entry_to_replace, replacing_entries):
+    for count, item in enumerate(items):
+        if item['name'] == entry_to_replace['name']:
+            items.remove(item)
+            for replacing_item in reversed(replacing_entries):
+                items.insert(count, replacing_item)
+            return
+
+
 if __name__ == "__main__":
+    list1 = [{"name": "1"}, {"name": "2"}, {"name": "3"}, {"name": "4"}]
+    list2 = [{"name": "a"}, {"name": "b"}, {"name": "c"}, {"name": "d"}]
+    to_replace = list1[2]
+    replace(list1, to_replace, list2)
+    print(list1)
+    replace(list1, {"name": "c"}, [{"name": "z"}])
+    print(list1)
     pass
