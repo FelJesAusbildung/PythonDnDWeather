@@ -41,14 +41,6 @@ def build_group(items, group_identifier):
     return return_group_dict
 
 
-def overwrite(group, items):
-    for item in items:
-        for group_item in group:
-            if group_item['name'] == item['name']:
-                item = group_item
-    return items
-
-
 def gen_group_dict(name, items):
     _, group_total = get_group(items, name)
     return {'name': name, 'total_chance': group_total}
@@ -79,6 +71,14 @@ def print_groups_details(groups, items):
     for group_name in groups:
         group, group_total = get_group(items, group_name['name'])
         print(group_total, group)
+
+
+def overwrite(group, items):
+    for item in items:
+        for group_item in group:
+            if group_item['name'] == item['name']:
+                item = group_item
+    return items
 
 
 def replace(items, entry_to_replace, replacing_entries):
