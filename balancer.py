@@ -22,6 +22,7 @@ def get_total_chance(items, key='chance'):
     chance_placeholder = 0
     for item in items:
         if 'identifier' in item:
+            print("adding up", item)
             chance_placeholder += get_total_chance(item['content'])
         else:
             chance_placeholder += item[key]
@@ -36,7 +37,7 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
 
 
 def get_corrected_chances(items, key, total, inflation_factor):
-    new_total = total/inflation_factor
+    new_total = total / inflation_factor
     chances = get_chances(items, key)
     chance_divisor = sum(chances) / new_total
     corrected_chances = []
@@ -58,6 +59,42 @@ def balance_file(filename, key='chance', total=100, inflation_factor=1000):
     items = items_from_json(filename)
     balanced_items = balance_with_output(items=items, key=key, inflation_factor=inflation_factor, total=total)
     write_items_to_file(filename, balanced_items)
+
+
+def test_for_group(items):
+    there_are_groups = False
+    for item in items:
+        if 'identifier' in item:
+            there_are_groups = True
+    return there_are_groups
+
+
+def balance_with_groups(items, total=1000000, key='chance'):
+    has_groups = test_for_group(items)
+    print("working on items:", items)
+    for item in items:
+        print("working on item:", item)
+        if 'identifier' in item:
+            print("getting chance for group:", item)
+            item['chance'] = item['identifier']['total_chance']
+    # print(json.dumps(items, indent=2))
+    print("balanced total")
+    balance(items, total=total)
+    # print(json.dumps(items, indent=2))
+    for item in items:
+        if 'identifier' in item:
+            print("overwriting group:", item)
+            item['identifier']['total_chance'] = item['chance']
+    # print(json.dumps(items, indent=2))
+    if has_groups:
+        print("working on deeper groups")
+        for item in items:
+            if 'identifier' in item:
+                balance_with_groups(item['content'], item['identifier']['total_chance'])
+    else:
+        return items
+    write_items_to_file("grouped_encounters_test.json", items)
+    return items
 
 
 if __name__ == "__main__":
