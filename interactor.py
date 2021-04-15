@@ -1,6 +1,5 @@
-import grouper
-from balancer import *
-from grouper import generate_groups
+from grouper import *
+from balancer import balance_with_groups, balance, balance_group
 
 
 def show_and_select(items, key=['chance']):
@@ -97,6 +96,7 @@ def confirm_done():
 def interact_main(filename, items, keys=['chance']):
     items = interact_modify(items, keys=keys)
     items = interact_balance(items, keys=keys)
+    ungroup(items)
     interact_save(items, filename)
 
 
@@ -130,7 +130,7 @@ def interact_balance(items, keys):
     if bool_decider():
         for key in keys:
             print(key)
-            items = balance(items, total=1000000, key=key)
+            items = balance_with_groups(items, total=1000000, key=key)
         print(items)
         for key in keys:
             print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key) / 10000))
