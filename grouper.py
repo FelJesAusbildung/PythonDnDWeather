@@ -93,6 +93,7 @@ def replace(items, entry_to_replace, replacing_entries):
 def insert(subgroup, total):
     total.insert(0, subgroup)
 
+
 def generate_groups(items, group_identifiers):
     for group_identifier in group_identifiers:
         built = build_group(items, group_identifier)
@@ -102,22 +103,6 @@ def generate_groups(items, group_identifiers):
 if __name__ == "__main__":
     groups = items_from_json("Groups.json")
     encounters = items_from_json("SailingEncounter.json")
-    test1 = [{"identifier": {"name": "A_A", "total_chance": "4"},
-              "content": [{"name": "A_A1", "chance": "1"}, {"name": "A_A2", "chance": "1"}]},
-             {"name": "A_B1", "chance": "1"},
-             {"name": "A_B2", "chance": "1"}, {"name": "B_Z1", "chance": "1"}, {"name": "B_Z2", "chance": "1"},
-             {"name": "C_Z1", "chance": "1"}, {"name": "D_Z1", "chance": "1"}, {"name": "E_Z1", "chance": "1"}]
-    test2 = [{"name": "A_A", "total_chance": "2"}, {"name": "A_B", "total_chance": "2"},
-             {"name": "A", "total_chance": "4"}, {"name": "B_", "total_chance": "2"}]
-    # for group_identifier in test2:
-    #     built = get_group_for_extract(test1, group_identifier)
-    #     insert(built, test1)
-    # print(json.dumps(test1, indent=2))
-    # for group_identifier in groups:
-    #     built = build_group(encounters, group_identifier)
-    #     insert(built, encounters)
     generate_groups(encounters, groups)
-    string = json.dumps(encounters, indent=2)
-    print(string)
+    print(json.dumps(encounters, indent=2))
     write_items_to_file("grouped_encounters_test.json", encounters)
-    pass
