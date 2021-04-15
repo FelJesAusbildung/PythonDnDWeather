@@ -1,6 +1,6 @@
 [
   {
-    "name": "damned",
+    "name": "damned17",
     "total_chance": 50000
   },
   {
@@ -12,11 +12,11 @@
     "total_chance": 10000
   },
   {
-    "name": "damned17",
+    "name": "damned",
     "total_chance": 10000
   },
   {
-    "name": "unique",
+    "name": "unique_inquisition",
     "total_chance": 20000
   },
   {
@@ -28,7 +28,7 @@
     "total_chance": 5000
   },
   {
-    "name": "unique_inquisition",
+    "name": "unique",
     "total_chance": 5000
   },
   {

@@ -15,6 +15,33 @@ def get_group(items, identifier, key='chance'):
         return group
 
 
+def build_group(items, group_identifier):
+    return_groups = []
+    return_items = []
+    items_to_remove = []
+    for item in items:
+        if 'identifier' in item:
+            if group_identifier['name'].upper() in item['identifier']['name'].upper():
+                return_groups.append(item)
+                items_to_remove.append(item)
+        if 'name' in item:
+            if group_identifier['name'].upper() in item['name']:
+                return_items.append(item)
+                items_to_remove.append(item)
+    for item in items_to_remove:
+        items.remove(item)
+    if len(return_items) == 0 and len(return_groups) == 1:
+        return return_groups[0]
+    else:
+        for item in return_items:
+            return_groups.append(item)
+        # print(return_groups)
+        total_chance = get_total_chance(return_groups)
+        return_group_dict = {"identifier": {"name": group_identifier['name'], "total_chance": total_chance},
+                             "content": return_groups}
+    return return_group_dict
+
+
 def overwrite(group, items):
     for item in items:
         for group_item in group:
@@ -90,22 +117,40 @@ def extract_group(items, group_identifier):
 
 
 def groupify(items, groups):
-    items_with_groups = []
+    grouped_items = []
     inserted = list(items)
     for group_identifier in groups:
-        _, contents = extract_group(list(items), group_identifier)
+        _, contents = extract_group(inserted, group_identifier)
         temp_group = {"identifier": group_identifier, "content": contents}
-        items_with_groups.append(temp_group)
-    for group_to_insert in items_with_groups:
+        insert_group(inserted, temp_group)
+        grouped_items.append(temp_group)
+        print(grouped_items)
+    for group_to_insert in reversed(grouped_items):
         inserted = insert_group(inserted, group_to_insert)
     return inserted
+
+
+def insert(subgroup, total):
+    total.insert(0, subgroup)
 
 
 if __name__ == "__main__":
     groups = items_from_json("Groups.json")
     encounters = items_from_json("SailingEncounter.json")
-    grouped_items = groupify(encounters, groups)
-    grouped_items_string = json.dumps(grouped_items, indent=2)
-    print(grouped_items_string)
-    write_items_to_file("grouped_encounters_test.json", grouped_items)
+    test1 = [{"identifier": {"name": "A_A", "total_chance": "4"},
+              "content": [{"name": "A_A1", "chance": "1"}, {"name": "A_A2", "chance": "1"}]},
+             {"name": "A_B1", "chance": "1"},
+             {"name": "A_B2", "chance": "1"}, {"name": "B_Z1", "chance": "1"}, {"name": "B_Z2", "chance": "1"},
+             {"name": "C_Z1", "chance": "1"}, {"name": "D_Z1", "chance": "1"}, {"name": "E_Z1", "chance": "1"}]
+    test2 = [{"name": "A_A", "total_chance": "2"}, {"name": "A_B", "total_chance": "2"},
+             {"name": "A", "total_chance": "4"}, {"name": "B_", "total_chance": "2"}]
+    # for group_identifier in test2:
+    #     built = get_group_for_extract(test1, group_identifier)
+    #     insert(built, test1)
+    # print(json.dumps(test1, indent=2))
+    for group_identifier in groups:
+        built = build_group(encounters, group_identifier)
+        insert(built, encounters)
+    string = json.dumps(encounters, indent=2)
+    write_items_to_file("grouped_encounters_test.json", encounters)
     pass

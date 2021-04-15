@@ -19,8 +19,13 @@ def get_chances(items, key='chance'):
 
 
 def get_total_chance(items, key='chance'):
-    chances = get_chances(items, key)
-    return sum(chances)
+    chance_placeholder = 0
+    for item in items:
+        if 'identifier' in item:
+            chance_placeholder += get_total_chance(item['content'])
+        else:
+            chance_placeholder += item[key]
+    return chance_placeholder
 
 
 def balance(items, key='chance', total=100, inflation_factor=1000):
