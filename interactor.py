@@ -1,5 +1,5 @@
 from grouper import *
-from balancer import balance_with_groups, balance, balance_group
+from balancer import balance_with_groups, balance
 
 
 def show_and_select(items, key=['chance']):
