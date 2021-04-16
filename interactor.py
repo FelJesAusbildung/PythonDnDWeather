@@ -89,7 +89,7 @@ def save_group_to_items(new_group, items):
 
 
 def confirm_done():
-    print("Do you want to modify another item?")
+    print("Do you want to keep going?")
     return bool_decider()
 
 
@@ -141,7 +141,7 @@ def interact_save(items, filename):
         print("All Changes Were Discarded!")
 
 
-if __name__ == "__main__":
+def main_loop():
     modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounter.json"]
     pick = show_and_select(modifiable)
     pick_items = items_from_json(pick)
@@ -155,3 +155,7 @@ if __name__ == "__main__":
         interact_main(pick, pick_items, keys=['total_chance'])
     else:
         interact_main(pick, pick_items)
+
+
+if __name__ == "__main__":
+    main_loop()
