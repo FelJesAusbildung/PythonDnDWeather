@@ -1,3 +1,4 @@
+from time import sleep
 import interactor, roller
 import os
 
@@ -13,12 +14,12 @@ def run_main_decider():
         done = False
         while not done:
             roller.roll()
-            if input("Press Any Key To Clear"):
-                clear()
             done = not interactor.confirm_done()
-        print("Shutting Down")
+            clear()
     elif pick == "Modify Json Data":
         interactor.main_loop()
+    print("Shutting Down")
+    sleep(1)
 
 
 if __name__ == "__main__":
