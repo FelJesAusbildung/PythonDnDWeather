@@ -1,6 +1,9 @@
 import json
 import random
 
+import interactor
+import main
+
 
 def get_random_item(items):
     total_chance = sum(item['chance'] for item in items)
@@ -53,6 +56,14 @@ def roll():
         print("Week {}:".format(number + 1))
         roll_encounter()
         roll_weather()
+
+
+def roll_loop():
+    done = False
+    while not done:
+        roll()
+        done = not interactor.confirm_done()
+        main.clear()
 
 
 if __name__ == "__main__":
