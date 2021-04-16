@@ -4,10 +4,10 @@ from balancer import balance_with_groups, balance, test_for_group
 
 def show_and_select(items, key=['chance']):
     for count, item in enumerate(items):
-        print("[{0}] {1}".format(count, display(item)))
+        print("[{0}] {1}".format(count+1, display(item)))
     selection = int(input("Input Int To Select Item To Modify\n"))
     if type(items) is list:
-        return items[selection]
+        return items[selection-1]
     else:
         return selection
 
