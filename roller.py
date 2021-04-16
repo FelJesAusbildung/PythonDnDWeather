@@ -46,9 +46,14 @@ def roll_wind(weather):
         print("{}, Wind Speed: {}km/h, Wind Direction: {}".format(chosen_wind['flavor'], speed, direction))
 
 
-weeks = int(input('number of weeks to calculate: \n'))
-for number in range(0, weeks):
-    print()
-    print("Week {}:".format(number + 1))
-    roll_encounter()
-    roll_weather()
+def roll():
+    weeks = int(input('number of weeks to calculate: \n'))
+    for number in range(0, weeks):
+        print()
+        print("Week {}:".format(number + 1))
+        roll_encounter()
+        roll_weather()
+
+
+if __name__ == "__main__":
+    roll()
