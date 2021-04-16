@@ -18,34 +18,78 @@ def get_chances(items, key='chance'):
     return chances
 
 
+def get_total_chance(items, key='chance'):
+    chance_placeholder = 0
+    for item in items:
+        if 'identifier' in item:
+            chance_placeholder += get_total_chance(item['content'])
+        else:
+            chance_placeholder += item[key]
+    return chance_placeholder
+
+
 def balance(items, key='chance', total=100, inflation_factor=1000):
+    chances = get_corrected_chances(inflation_factor=inflation_factor, items=items, key=key, total=total)
+    for item, chance in zip(items, chances):
+        item[key] = chance
+    return items
+
+
+def get_corrected_chances(items, key, total, inflation_factor):
+    new_total = total / inflation_factor
     chances = get_chances(items, key)
-    chance_divisor = sum(chances) / total
+    chance_divisor = sum(chances) / new_total
     corrected_chances = []
     for chance in chances:
         corrected_chances.append(int((chance / chance_divisor) * inflation_factor))
-    sum_corrected_chances = sum(corrected_chances)
-    return corrected_chances, sum_corrected_chances
+    return corrected_chances
 
 
 def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
-    chances = get_chances(items, key)
-    print("old chances: ", chances)
-    balanced_chances, new_total = balance(items, key, inflation_factor)
-    print("rebalanced chances: ", balanced_chances, "Total: ", new_total)
-    return balanced_chances, new_total
+    old_chances = get_chances(items, key)
+    print("old chances: ", old_chances, "Total:", get_total_chance(items, key))
+    balanced_items = balance(items=items, key=key, inflation_factor=inflation_factor, total=total)
+    balanced_chances = get_chances(balanced_items, key)
+    print("rebalanced chances: ", balanced_chances, "Total:", get_total_chance(items, key))
+    return balanced_items
 
 
 def balance_file(filename, key='chance', total=100, inflation_factor=1000):
     items = items_from_json(filename)
-    balanced_chances, _ = balance_with_output(items, key, inflation_factor)
-    for item, chance in zip(items, balanced_chances):
-        item[key] = chance
-    write_items_to_file(filename, items)
+    balanced_items = balance_with_output(items=items, key=key, inflation_factor=inflation_factor, total=total)
+    write_items_to_file(filename, balanced_items)
+
+
+def test_for_group(items):
+    there_are_groups = False
+    for item in items:
+        if 'identifier' in item:
+            there_are_groups = True
+    return there_are_groups
+
+
+def balance_with_groups(items, total=1000000, key='chance'):
+    has_groups = test_for_group(items)
+    for item in items:
+        if 'identifier' in item:
+            item['chance'] = item['identifier']['total_chance']
+    balance(items, total=total)
+    for item in items:
+        if 'identifier' in item:
+            item['identifier']['total_chance'] = item['chance']
+    if has_groups:
+        for item in items:
+            if 'identifier' in item:
+                balance_with_groups(item['content'], item['identifier']['total_chance'])
+    else:
+        return items
+    write_items_to_file("grouped_encounters_test.json", items)
+    return items
 
 
 if __name__ == "__main__":
-    balance_file("Weather.json")
-    balance_file("Wind.json", key='apocalypseChance')
-    balance_file("Wind.json", key='nonApocalypseChance')
-    balance_file("SailingEncounter.json")
+    # balance_file("Weather.json")
+    # balance_file("Wind.json", key='apocalypseChance')
+    # balance_file("Wind.json", key='nonApocalypseChance')
+    # balance_file("SailingEncounter.json")
+    balance_with_output(items_from_json("SailingEncounter.json"), total=1000000)
