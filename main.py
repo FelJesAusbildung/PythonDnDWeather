@@ -7,20 +7,23 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def run_main_decider():
-    choices = ["Roll Weather", "Modify Json Data"]
-    pick = interactor.show_and_select(choices)
-    if pick == "Roll Weather":
-        done = False
-        while not done:
-            roller.roll()
-            done = not interactor.confirm_done()
-            clear()
-    elif pick == "Modify Json Data":
+def main_dialogue():
+    choices = ["Roll Weather", "Modify Json Data", "Exit"]
+    chosen = interactor.show_and_select(choices)
+    if chosen == "Roll Weather":
+        roller.roll_loop()
+    elif chosen == "Modify Json Data":
         interactor.main_loop()
+    elif chosen == "Exit":
+        close()
+    main_dialogue()
+
+
+def close():
     print("Shutting Down")
     sleep(1)
+    exit()
 
 
 if __name__ == "__main__":
-    run_main_decider()
+    main_dialogue()
