@@ -5,7 +5,7 @@ import balancer
 def show_and_select(items):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count + 1, display(item)))
-    selection = int(input("Input Int To Select Item To Modify\n"))
+    selection = int(input("Input Int To Select\n"))
     if isinstance(items, list):
         return items[selection - 1]
     else:
