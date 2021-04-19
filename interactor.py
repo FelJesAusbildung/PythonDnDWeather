@@ -121,7 +121,7 @@ def interact_balance(items, keys):
     print("Balance New Chances?")
     if bool_decider():
         for key in keys:
-            if test_for_group(items):
+            if check_for_groups_in(items):
                 items = balance_with_groups(items, total=1000000, key=key)
             else:
                 items = balance(items, total=1000000, key=key)
