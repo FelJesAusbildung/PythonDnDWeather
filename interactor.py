@@ -1,5 +1,5 @@
-from grouper import *
-from balancer import balance_with_groups, balance, test_for_group
+import grouper
+import balancer
 
 
 def show_and_select(items, key=['chance']):
@@ -81,7 +81,7 @@ def confirm_done():
 def interact_main(filename, items, keys=['chance']):
     items = interact_modify(items, keys=keys)
     items = interact_balance(items, keys=keys)
-    ungroup(items)
+    grouper.ungroup(items)
     interact_save(items, filename)
 
 
@@ -106,12 +106,12 @@ def interact_balance(items, keys):
     print("Balance New Chances?")
     if bool_decider():
         for key in keys:
-            if check_for_groups_in(items):
-                items = balance_with_groups(items, total=1000000, key=key)
+            if grouper.check_for_groups_in(items):
+                items = balancer.balance_with_groups(items, total=1000000, key=key)
             else:
-                items = balance(items, total=1000000, key=key)
+                items = balancer.balance(items, total=1000000, key=key)
         for key in keys:
-            print("Items({0}) Were Rebalanced To {1}%".format(key, get_total_chance(items, key=key) / 10000))
+            print("Items({0}) Were Rebalanced To {1}%".format(key, balancer.get_total_chance(items, key=key) / 10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
     return items
@@ -120,7 +120,7 @@ def interact_balance(items, keys):
 def interact_save(items, filename):
     print("Write Modified Json To File?")
     if bool_decider():
-        write_items_to_file(filename, items)
+        balancer.write_items_to_file(filename, items)
         print("File Saved!")
     else:
         print("All Changes Were Discarded!")
@@ -129,12 +129,12 @@ def interact_save(items, filename):
 def main_loop():
     modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounter.json"]
     pick = show_and_select(modifiable)
-    pick_items = items_from_json(pick)
+    pick_items = balancer.items_from_json(pick)
     if pick is "Wind.json":
         interact_main(pick, pick_items, keys=['apocalypseChance', 'nonApocalypseChance'])
     elif pick is "SailingEncounter.json":
-        group_data = items_from_json("Groups.json")
-        generate_groups(pick_items, group_data)
+        group_data = balancer.items_from_json("Groups.json")
+        grouper.generate_groups(pick_items, group_data)
         interact_main(pick, pick_items)
     elif pick is "Groups.json":
         interact_main(pick, pick_items, keys=['total_chance'])
