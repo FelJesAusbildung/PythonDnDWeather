@@ -1,5 +1,5 @@
 import json
-from balancer import get_total_chance, items_from_json, write_items_to_file
+from balancer import items_from_json, write_items_to_file
 
 
 def build_group(items, group_identifier):
