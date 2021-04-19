@@ -2,7 +2,7 @@ import grouper
 import balancer
 
 
-def show_and_select(items, key=['chance']):
+def show_and_select(items):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count + 1, display(item)))
     selection = int(input("Input Int To Select Item To Modify\n"))
@@ -79,13 +79,13 @@ def confirm_done():
 
 
 def interact_main(filename, items, keys=['chance']):
-    items = interact_modify(items, keys=keys)
+    items = interact_modify(items)
     items = interact_balance(items, keys=keys)
     grouper.ungroup(items)
     interact_save(items, filename)
 
 
-def interact_modify(items, keys=['chance']):
+def interact_modify(items):
     done = False
     while not done:
         selected_item = show_and_select(items)
