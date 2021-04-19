@@ -9,7 +9,7 @@ def show_and_select(items, key=['chance']):
     if type(items) is list:
         return items[selection - 1]
     else:
-        return selection
+        return selection - 1
 
 
 def display(entry):
