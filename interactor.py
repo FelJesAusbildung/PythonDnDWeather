@@ -4,10 +4,10 @@ from balancer import balance_with_groups, balance, test_for_group
 
 def show_and_select(items, key=['chance']):
     for count, item in enumerate(items):
-        print("[{0}] {1}".format(count+1, display(item)))
+        print("[{0}] {1}".format(count + 1, display(item)))
     selection = int(input("Input Int To Select Item To Modify\n"))
     if type(items) is list:
-        return items[selection-1]
+        return items[selection - 1]
     else:
         return selection
 
@@ -19,11 +19,11 @@ def display(entry):
     if "name" in entry:
         string_placeholder += entry['name'] + " "
     if "chance" in entry:
-        string_placeholder += "chance: " + str(entry['chance']/10000) + "% "
+        string_placeholder += "chance: " + str(entry['chance'] / 10000) + "% "
     if "apocalypseChance" in entry:
-        string_placeholder += "apo_chance: " + str(entry['apocalypseChance']/10000) + "% "
+        string_placeholder += "apo_chance: " + str(entry['apocalypseChance'] / 10000) + "% "
     if "nonApocalypseChance" in entry:
-        string_placeholder += "non_apo_chance: " + str(entry['nonApocalypseChance']/10000) + "% "
+        string_placeholder += "non_apo_chance: " + str(entry['nonApocalypseChance'] / 10000) + "% "
     if "identifier" in entry:
         string_placeholder += "Group: " + entry['identifier']['name']
     if string_placeholder is not "":
@@ -70,21 +70,6 @@ def save_item_to_items(new_item, items):
     for item in items:
         if item['name'] == new_item['name']:
             item == new_item
-    return items
-
-
-def save_item_to_group(new_item, group):
-    for item in group['content']:
-        if item['name'] == new_item['name']:
-            item == new_item
-    return group
-
-
-def save_group_to_items(new_group, items):
-    for item in items:
-        if 'identifier' in item:
-            if item['identifier']['name'] == new_group['identifier']['name']:
-                item == new_group
     return items
 
 
