@@ -69,7 +69,7 @@ def save_field_to_item(field, item):
 def save_item_to_items(new_item, items):
     for item in items:
         if item['name'] == new_item['name']:
-            item == new_item
+            item = new_item
     return items
 
 
