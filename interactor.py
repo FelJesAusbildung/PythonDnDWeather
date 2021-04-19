@@ -6,7 +6,7 @@ def show_and_select(items):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count + 1, display(item)))
     selection = int(input("Input Int To Select Item To Modify\n"))
-    if type(items) is list:
+    if isinstance(items, list):
         return items[selection - 1]
     else:
         return selection - 1
@@ -14,7 +14,7 @@ def show_and_select(items):
 
 def display(entry):
     string_placeholder = ""
-    if type(entry) is str:
+    if isinstance(entry, str):
         return entry
     if "name" in entry:
         string_placeholder += entry['name'] + " "
@@ -48,15 +48,15 @@ def bool_decider():
 
 
 def edit_field(field):
-    if type(field[1]) == str:
+    if isinstance(field[1], str):
         new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
-    elif type(field[1]) == int:
+    elif isinstance(field[1], int):
         new_value = int(input('Enter A New Value For "{0}"\n'.format(field[0])))
-    elif type(field[1]) == float:
+    elif isinstance(field[1], float):
         new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
-    elif type(field[1]) == bool:
+    elif isinstance(field[1], bool):
         new_value = bool_decider()
-    elif type(field) == list:
+    elif isinstance(field, list):
         print("test")
     return field[0], new_value
 
