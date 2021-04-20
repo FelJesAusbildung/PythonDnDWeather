@@ -58,8 +58,4 @@ def ungroup(items):
 
 
 if __name__ == "__main__":
-    groups = balancer.items_from_json("Groups.json")
-    encounters = balancer.items_from_json("SailingEncounter.json")
-    generate_groups(encounters, groups)
-    print(json.dumps(encounters, indent=2))
-    balancer.write_items_to_file("grouped_encounters_test.json", encounters)
+    pass

@@ -88,8 +88,4 @@ def balance_with_groups(items, total=1000000, key='chance'):
 
 
 if __name__ == "__main__":
-    # balance_file("Weather.json")
-    # balance_file("Wind.json", key='apocalypseChance')
-    # balance_file("Wind.json", key='nonApocalypseChance')
-    # balance_file("SailingEncounter.json")
-    balance_with_output(items_from_json("SailingEncounter.json"), total=1000000)
+    pass

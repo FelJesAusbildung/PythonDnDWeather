@@ -67,4 +67,4 @@ def roll_loop():
 
 
 if __name__ == "__main__":
-    roll()
+    pass
