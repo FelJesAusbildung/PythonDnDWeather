@@ -68,7 +68,7 @@ def test_for_group(items):
     return there_are_groups
 
 
-def balance_with_groups(items, total=1000000, key='chance'):
+def balance_with_groups(items, total=1000000):
     has_groups = test_for_group(items)
     for item in items:
         if 'identifier' in item:
@@ -83,8 +83,6 @@ def balance_with_groups(items, total=1000000, key='chance'):
                 balance_with_groups(item['content'], item['identifier']['total_chance'])
     else:
         return items
-    write_items_to_file("grouped_encounters_test.json", items)
-    return items
 
 
 if __name__ == "__main__":

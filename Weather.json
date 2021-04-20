@@ -7,139 +7,139 @@
   },
   {
     "name": "NORMAL",
-    "chance": 600000,
+    "chance": 603621,
     "isApocalypse": false,
     "flavor": "Normal Weather:"
   },
   {
     "name": "INCLEMENT",
-    "chance": 100000,
+    "chance": 100603,
     "isApocalypse": false,
     "flavor": "Inclement Weather: It's raining/snowing"
   },
   {
     "name": "ABNORMAL0",
-    "chance": 30000,
+    "chance": 30181,
     "isApocalypse": false,
     "flavor": "Abnormal Weather: Heat Wave"
   },
   {
     "name": "ABNORMAL1",
-    "chance": 30000,
+    "chance": 30181,
     "isApocalypse": false,
     "flavor": "Abnormal Weather: Cold Snap"
   },
   {
     "name": "LIGHTAPO0",
-    "chance": 35000,
+    "chance": 35211,
     "isApocalypse": true,
     "flavor": "Light Apocalypse Weather: Radstorm"
   },
   {
     "name": "LIGHTAPO1",
-    "chance": 35000,
+    "chance": 35211,
     "isApocalypse": true,
     "flavor": "Light Apocalypse Weather: Acid Rain"
   },
   {
     "name": "MEDIUMAPO0",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Blood Moon"
   },
   {
     "name": "MEDIUMAPO1",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Cometfall"
   },
   {
     "name": "MEDIUMAPO2",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Slime Rain"
   },
   {
     "name": "MEDIUMAPO3",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Eye Night"
   },
   {
     "name": "MEDIUMAPO4",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Solar Eclipse"
   },
   {
     "name": "MEDIUMAPO5",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Rain of Blood"
   },
   {
     "name": "MEDIUMAPO6",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Meteor Magic Boost"
   },
   {
     "name": "MEDIUMAPO7",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Rain of Fire"
   },
   {
     "name": "MEDIUMAPO8",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Salt Blizzard"
   },
   {
     "name": "MEDIUMAPO9",
-    "chance": 8000,
+    "chance": 8048,
     "isApocalypse": true,
     "flavor": "Medium Apocalypse Weather: Marima Drop Moss"
   },
   {
     "name": "STRONGAPO0",
-    "chance": 16000,
+    "chance": 16096,
     "isApocalypse": true,
     "flavor": "Strong Apocalypse Weather: Radiant Light"
   },
   {
     "name": "STRONGAPO1",
-    "chance": 16000,
+    "chance": 16096,
     "isApocalypse": true,
     "flavor": "Strong Apocalypse Weather: Skeletal Sleet"
   },
   {
     "name": "STRONGAPO2",
-    "chance": 16000,
+    "chance": 10060,
     "isApocalypse": true,
     "flavor": "Strong Apocalypse Weather: Healing Potion Rain"
   },
   {
     "name": "STRONGAPO3",
-    "chance": 16000,
+    "chance": 16096,
     "isApocalypse": true,
     "flavor": "Strong Apocalypse Weather: Inflict Wounds Rain"
   },
   {
     "name": "STRONGAPO4",
-    "chance": 16000,
+    "chance": 16096,
     "isApocalypse": true,
     "flavor": "Strong Apocalypse Weather: Wild Hunt"
   },
   {
     "name": "EXTREMEAPO0",
-    "chance": 5000,
+    "chance": 5030,
     "isApocalypse": true,
     "flavor": "Extreme Apocalypse Weather: Black Storm | If in the Endless Desert: Ion Storm"
   },
   {
     "name": "EXTREMEAPO1",
-    "chance": 5000,
+    "chance": 5030,
     "isApocalypse": true,
     "flavor": "Extreme Apocalypse Weather: Black Storm | If in the Endless Desert: Gold Dust Storm"
   }

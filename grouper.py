@@ -1,6 +1,3 @@
-import json
-import balancer
-
 
 def build_group(items, group_identifier):
     return_groups = []

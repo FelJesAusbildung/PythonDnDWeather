@@ -107,7 +107,7 @@ def interact_balance(items, keys):
     if bool_decider():
         for key in keys:
             if grouper.check_for_groups_in(items):
-                items = balancer.balance_with_groups(items, total=1000000, key=key)
+                items = balancer.balance_with_groups(items, total=1000000)
             else:
                 items = balancer.balance(items, total=1000000, key=key)
         for key in keys:
