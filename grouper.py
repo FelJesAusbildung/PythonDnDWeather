@@ -1,5 +1,5 @@
 import json
-from balancer import items_from_json, write_items_to_file
+import balancer
 
 
 def build_group(items, group_identifier):
@@ -58,8 +58,8 @@ def ungroup(items):
 
 
 if __name__ == "__main__":
-    groups = items_from_json("Groups.json")
-    encounters = items_from_json("SailingEncounter.json")
+    groups = balancer.items_from_json("Groups.json")
+    encounters = balancer.items_from_json("SailingEncounter.json")
     generate_groups(encounters, groups)
     print(json.dumps(encounters, indent=2))
-    write_items_to_file("grouped_encounters_test.json", encounters)
+    balancer.write_items_to_file("grouped_encounters_test.json", encounters)
