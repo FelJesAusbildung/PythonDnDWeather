@@ -5,11 +5,30 @@ import balancer
 def show_and_select(items):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count + 1, display(item)))
-    selection = int(input("Input Int To Select\n"))
+    selection = int(custom_input("Input Int To Select\n", len(items)))
     if isinstance(items, list):
         return items[selection - 1]
     else:
         return selection - 1
+
+
+def custom_input(string, int_max):
+    input_string = input(string)
+    while not validate(input_string, int_max):
+        input_string = input(string)
+    return input_string
+
+
+def validate(stuff_that_was_input, int_max):
+    if not stuff_that_was_input.isdecimal():
+        print("Whatever the fuck you just did was not an int")
+        return False
+    elif not (1 <= int(stuff_that_was_input) <= int_max):
+        print("Whatever the fuck you just did was not within the displayed int range")
+        return False
+    else:
+        print(stuff_that_was_input, "was validated against", int_max)
+        return True
 
 
 def display(entry):
@@ -38,7 +57,7 @@ def select_and_modify(item):
 
 
 def bool_decider():
-    selector = int(input('[1] True\n[2] False\n'))
+    selector = int(custom_input('[1] True\n[2] False\n', 2))
     if selector == 1:
         return True
     if selector == 2:
@@ -48,12 +67,25 @@ def bool_decider():
 
 
 def edit_field(field):
+    new_value = None
     if isinstance(field[1], str):
-        new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
+        while not isinstance(new_value, str):
+            new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
     elif isinstance(field[1], int):
-        new_value = int(input('Enter A New Value For "{0}"\n'.format(field[0])))
+        # while not isinstance(new_value, int):
+        #     new_value = (input('Enter A New Value For "{0}"\n'.format(field[0])))
+        #     if new_value.isdecimal():
+        #         new_value = int(new_value)
+        try:
+            new_value = int(input('Enter A New Value For "{0}"\n'.format(field[0])))
+        except:
+            return edit_field(field)
+
     elif isinstance(field[1], float):
-        new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
+        try:
+            new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
+        except UserWarning:
+            print("damn you stoopid")
     elif isinstance(field[1], bool):
         new_value = bool_decider()
     return field[0], new_value
