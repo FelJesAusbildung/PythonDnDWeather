@@ -56,8 +56,6 @@ def edit_field(field):
         new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
     elif isinstance(field[1], bool):
         new_value = bool_decider()
-    elif isinstance(field, list):
-        print("test")
     return field[0], new_value
 
 
