@@ -5,9 +5,15 @@ import balancer
 def show_and_select(items):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count + 1, display(item)))
-    selection = int(custom_input("Input Int To Select\n", len(items)))
+    try:
+        selection = int(input("Input Int To Select\n"))
+    except:
+        return show_and_select(items)
     if isinstance(items, list):
-        return items[selection - 1]
+        if 1 <= selection <= len(items):
+            return items[selection - 1]
+        else:
+            return show_and_select(items)
     else:
         return selection - 1
 
@@ -21,13 +27,12 @@ def custom_input(string, int_max):
 
 def validate(stuff_that_was_input, int_max):
     if not stuff_that_was_input.isdecimal():
-        print("Whatever the fuck you just did was not an int")
+        print("Your Selection Has To Be A Number")
         return False
     elif not (1 <= int(stuff_that_was_input) <= int_max):
-        print("Whatever the fuck you just did was not within the displayed int range")
+        print("Your Selection Has To Be Within The Shown Range")
         return False
     else:
-        print(stuff_that_was_input, "was validated against", int_max)
         return True
 
 
@@ -72,20 +77,17 @@ def edit_field(field):
         while not isinstance(new_value, str):
             new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
     elif isinstance(field[1], int):
-        # while not isinstance(new_value, int):
-        #     new_value = (input('Enter A New Value For "{0}"\n'.format(field[0])))
-        #     if new_value.isdecimal():
-        #         new_value = int(new_value)
         try:
             new_value = int(input('Enter A New Value For "{0}"\n'.format(field[0])))
         except:
+            print("Value has to be an Int")
             return edit_field(field)
-
     elif isinstance(field[1], float):
         try:
             new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
-        except UserWarning:
-            print("damn you stoopid")
+        except:
+            print("Value has to be a float")
+            return edit_field(field)
     elif isinstance(field[1], bool):
         new_value = bool_decider()
     return field[0], new_value
