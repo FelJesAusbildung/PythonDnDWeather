@@ -1,4 +1,3 @@
-
 def build_group(items, group_identifier):
     return_groups = []
     return_items = []
@@ -52,7 +51,3 @@ def ungroup(items):
                     items.append(group_item)
                 items.remove(item)
         tested = check_for_groups_in(items)
-
-
-if __name__ == "__main__":
-    pass
