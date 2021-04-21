@@ -24,14 +24,10 @@ def build_group(items, group_identifier):
     return return_group_dict
 
 
-def insert(subgroup, total):
-    total.insert(0, subgroup)
-
-
 def generate_groups(items, group_identifiers):
     for group_identifier in group_identifiers:
         built = build_group(items, group_identifier)
-        insert(built, items)
+        items.insert(0, built)
 
 
 def check_for_groups_in(items):
