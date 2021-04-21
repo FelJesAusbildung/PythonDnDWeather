@@ -44,7 +44,7 @@ def interact_balance(items, keys):
             if grouper.check_for_groups_in(items):
                 items = balancer.balance_with_groups(items, total=1000000)
             else:
-                items = balancer.balance(items, total=1000000, key=key)
+                balancer.balance(items, total=1000000, key=key)
         for key in keys:
             print("Items({0}) Were Rebalanced To {1}%".format(key, balancer.get_total_chance(items, key=key) / 10000))
     else:

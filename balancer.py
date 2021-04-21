@@ -33,7 +33,6 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
     chances = get_corrected_chances(inflation_factor=inflation_factor, items=items, key=key, total=total)
     for item, chance in zip(items, chances):
         item[key] = chance
-    return items
 
 
 def get_corrected_chances(items, key, total, inflation_factor):
