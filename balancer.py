@@ -61,7 +61,3 @@ def balance_with_groups(items, total=1000000):
                 balance_with_groups(item['content'], item['identifier']['total_chance'])
     else:
         return items
-
-
-if __name__ == "__main__":
-    pass
