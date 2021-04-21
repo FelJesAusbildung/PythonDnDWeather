@@ -64,7 +64,3 @@ def roll_loop():
         roll()
         done = not interactor.show_confirm_done()
         main.clear()
-
-
-if __name__ == "__main__":
-    pass
