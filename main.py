@@ -1,6 +1,8 @@
-from time import sleep
-import interactor, roller
 import os
+from time import sleep
+
+import interactor
+import roller
 
 
 def clear():

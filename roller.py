@@ -62,9 +62,5 @@ def roll_loop():
     done = False
     while not done:
         roll()
-        done = not interactor.confirm_done()
+        done = not interactor.show_confirm_done()
         main.clear()
-
-
-if __name__ == "__main__":
-    roll()
