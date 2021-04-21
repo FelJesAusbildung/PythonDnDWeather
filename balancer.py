@@ -45,21 +45,6 @@ def get_corrected_chances(items, key, total, inflation_factor):
     return corrected_chances
 
 
-def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
-    old_chances = get_list_of_items_for_key(items, key)
-    print("old chances: ", old_chances, "Total:", get_total_chance(items, key))
-    balanced_items = balance(items=items, key=key, inflation_factor=inflation_factor, total=total)
-    balanced_chances = get_list_of_items_for_key(balanced_items, key)
-    print("rebalanced chances: ", balanced_chances, "Total:", get_total_chance(items, key))
-    return balanced_items
-
-
-def balance_file(filename, key='chance', total=100, inflation_factor=1000):
-    items = items_from_json(filename)
-    balanced_items = balance_with_output(items=items, key=key, inflation_factor=inflation_factor, total=total)
-    write_items_to_file(filename, balanced_items)
-
-
 def test_for_group(items):
     there_are_groups = False
     for item in items:
