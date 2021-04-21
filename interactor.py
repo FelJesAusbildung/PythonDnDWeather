@@ -5,15 +5,9 @@ import balancer
 def show_and_select(items):
     for count, item in enumerate(items):
         print("[{0}] {1}".format(count + 1, display(item)))
-    try:
-        selection = int(input("Input Int To Select\n"))
-    except:
-        return show_and_select(items)
+    selection = int(custom_input("Input Int To Select\n", len(items)))
     if isinstance(items, list):
-        if 1 <= selection <= len(items):
-            return items[selection - 1]
-        else:
-            return show_and_select(items)
+        return items[selection - 1]
     else:
         return selection - 1
 
@@ -25,11 +19,11 @@ def custom_input(string, int_max):
     return input_string
 
 
-def validate(stuff_that_was_input, int_max):
-    if not stuff_that_was_input.isdecimal():
+def validate(input_string, int_max):
+    if not input_string.isdecimal():
         print("Your Selection Has To Be A Number")
         return False
-    elif not (1 <= int(stuff_that_was_input) <= int_max):
+    elif not (1 <= int(input_string) <= int_max):
         print("Your Selection Has To Be Within The Shown Range")
         return False
     else:
@@ -72,22 +66,13 @@ def bool_decider():
 
 
 def edit_field(field):
-    new_value = None
+    new_value = ""
     if isinstance(field[1], str):
-        while not isinstance(new_value, str):
-            new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
+        new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
     elif isinstance(field[1], int):
-        try:
-            new_value = int(input('Enter A New Value For "{0}"\n'.format(field[0])))
-        except:
-            print("Value has to be an Int")
-            return edit_field(field)
-    elif isinstance(field[1], float):
-        try:
-            new_value = float(input('Enter A New Value For "{0}"\n'.format(field[0])))
-        except:
-            print("Value has to be a float")
-            return edit_field(field)
+        while not new_value.isdecimal():
+            new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
+        new_value = int(new_value)
     elif isinstance(field[1], bool):
         new_value = bool_decider()
     return field[0], new_value
