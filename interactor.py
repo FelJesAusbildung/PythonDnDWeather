@@ -162,7 +162,3 @@ def save_item_to_items(new_item, items):
         if item['name'] == new_item['name']:
             item = new_item
     return items
-
-
-if __name__ == "__main__":
-    pass
