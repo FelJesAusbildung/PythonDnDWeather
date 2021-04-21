@@ -1,4 +1,5 @@
 import json
+import grouper
 
 
 def items_from_json(filename):
@@ -45,16 +46,8 @@ def get_corrected_chances(items, key, total, inflation_factor):
     return corrected_chances
 
 
-def test_for_group(items):
-    there_are_groups = False
-    for item in items:
-        if 'identifier' in item:
-            there_are_groups = True
-    return there_are_groups
-
-
 def balance_with_groups(items, total=1000000):
-    has_groups = test_for_group(items)
+    has_groups = grouper.check_for_groups_in(items)
     for item in items:
         if 'identifier' in item:
             item['chance'] = item['identifier']['total_chance']
