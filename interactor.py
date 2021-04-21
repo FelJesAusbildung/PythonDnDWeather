@@ -46,7 +46,7 @@ def interact_balance(items, keys):
             else:
                 balancer.balance(items, total=1000000, key=key)
         for key in keys:
-            print("Items({0}) Were Rebalanced To {1}%".format(key, balancer.get_total_chance(items, key=key) / 10000))
+            print("Items({}) Were Rebalanced To {}%".format(key, balancer.get_total_chance(items, key=key) / 10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
     return items
@@ -96,7 +96,7 @@ def show_confirm_done():
 
 def show_and_select(items):
     for count, item in enumerate(items):
-        print("[{0}] {1}".format(count + 1, show_entry(item)))
+        print("[{}] {}".format(count + 1, show_entry(item)))
     selection = int(custom_input("Input Int To Select\n", len(items)))
     if isinstance(items, list):
         return items[selection - 1]
@@ -142,10 +142,10 @@ def select_dict_field(item):
 def edit_field(field):
     new_value = ""
     if isinstance(field[1], str):
-        new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
+        new_value = input('Enter A New Value For "{}"\n'.format(field[0]))
     elif isinstance(field[1], int):
         while not new_value.isdecimal():
-            new_value = input('Enter A New Value For "{0}"\n'.format(field[0]))
+            new_value = input('Enter A New Value For "{}"\n'.format(field[0]))
         new_value = int(new_value)
     elif isinstance(field[1], bool):
         new_value = show_bool_decider()
