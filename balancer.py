@@ -11,7 +11,7 @@ def write_items_to_file(filename, json_data):
         json.dump(json_data, file, indent=2)
 
 
-def get_chances(items, key='chance'):
+def get_list_of_items_for_key(items, key='chance'):
     chances = []
     for item in items:
         chances.append(item[key])
@@ -37,7 +37,7 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
 
 def get_corrected_chances(items, key, total, inflation_factor):
     new_total = total / inflation_factor
-    chances = get_chances(items, key)
+    chances = get_list_of_items_for_key(items, key)
     chance_divisor = sum(chances) / new_total
     corrected_chances = []
     for chance in chances:
@@ -46,10 +46,10 @@ def get_corrected_chances(items, key, total, inflation_factor):
 
 
 def balance_with_output(items, key='chance', total=100, inflation_factor=1000):
-    old_chances = get_chances(items, key)
+    old_chances = get_list_of_items_for_key(items, key)
     print("old chances: ", old_chances, "Total:", get_total_chance(items, key))
     balanced_items = balance(items=items, key=key, inflation_factor=inflation_factor, total=total)
-    balanced_chances = get_chances(balanced_items, key)
+    balanced_chances = get_list_of_items_for_key(balanced_items, key)
     print("rebalanced chances: ", balanced_chances, "Total:", get_total_chance(items, key))
     return balanced_items
 
