@@ -58,5 +58,3 @@ def balance_with_groups(items, total=1000000):
         for item in items:
             if 'identifier' in item:
                 balance_with_groups(item['content'], item['identifier']['total_chance'])
-    else:
-        return items
