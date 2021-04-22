@@ -13,10 +13,10 @@ def get_random_item(items):
     logging.info("picked {} out of {}".format(random_chance, total_chance))
     for ordinal, item in enumerate(items):
         if random_chance > 0:
-            logging.debug("{} {} is still above 0. item:{}".format(ordinal, random_chance, item))
+            logging.debug("{} | {} is still above 0. item:{}".format(ordinal, random_chance, item))
             random_chance -= item['chance']
         else:
-            logging.debug("{} {} is no longer above 0. item:{}".format(ordinal, random_chance, item))
+            logging.debug("{} | {} is no longer above 0. item:{}".format(ordinal, random_chance, item))
             chosen = items[ordinal - 1]
             break
         chosen = items[len(items) - 1]

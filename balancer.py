@@ -45,7 +45,7 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
     logging.debug("key: {}, total: {}, inflation_factor: {}".format(key, total, inflation_factor))
     chances = get_corrected_chances(inflation_factor=inflation_factor, items=items, key=key, total=total)
     for item, chance in zip(items, chances):
-        logging.debug("overwriting chance {} on item {}".format(chance, item))
+        logging.debug("overwriting {} {} on item {}".format(chance, key, item))
         item[key] = chance
     logging.info("finished balancing items {}".format(items))
 
