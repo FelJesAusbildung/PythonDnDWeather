@@ -4,18 +4,18 @@ import balancer
 
 def main_loop():
     modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounter.json"]
-    pick = show_and_select(modifiable)
-    pick_items = balancer.items_from_json(pick)
-    if pick is "Wind.json":
-        interact_main(pick, pick_items, keys=['apocalypseChance', 'nonApocalypseChance'])
-    elif pick is "SailingEncounter.json":
+    picked = show_and_select(modifiable)
+    picked_items = balancer.items_from_json(picked)
+    if picked is "Wind.json":
+        interact_main(picked, picked_items, keys=['apocalypseChance', 'nonApocalypseChance'])
+    elif picked is "SailingEncounter.json":
         group_data = balancer.items_from_json("Groups.json")
-        grouper.generate_groups(pick_items, group_data)
-        interact_main(pick, pick_items)
-    elif pick is "Groups.json":
-        interact_main(pick, pick_items, keys=['total_chance'])
+        grouper.generate_groups(picked_items, group_data)
+        interact_main(picked, picked_items)
+    elif picked is "Groups.json":
+        interact_main(picked, picked_items, keys=['total_chance'])
     else:
-        interact_main(pick, pick_items)
+        interact_main(picked, picked_items)
 
 
 def interact_main(filename, items, keys=['chance']):
@@ -33,7 +33,7 @@ def interact_modify(items):
             interact_modify(selected_item['content'])
         else:
             items = modify_selected_item(items, selected_item)
-        done = not show_confirm_done()
+        done = not show_confirm_continue()
     return items
 
 
@@ -46,7 +46,7 @@ def interact_balance(items, keys):
             else:
                 balancer.balance(items, total=1000000, key=key)
         for key in keys:
-            print("Items({}) Were Rebalanced To {}%".format(key, balancer.get_total_chance(items, key=key) / 10000))
+            print("Items({}) Were Rebalanced To {}%".format(key, balancer.get_sum_of_items_for_key(items, key=key) / 10000))
     else:
         print("Chances Were Not Balanced! This Leads To Strange Chances")
     return items
@@ -89,7 +89,7 @@ def show_bool_decider():
         return show_bool_decider()
 
 
-def show_confirm_done():
+def show_confirm_continue():
     print("Do you want to keep going?")
     return show_bool_decider()
 
