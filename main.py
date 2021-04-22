@@ -31,5 +31,6 @@ def close():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s' , filename="DnDWeather.log", filemode="w", level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', filename="DnDWeather.log", filemode="w",
+                        level=logging.DEBUG)
     main_dialogue()
