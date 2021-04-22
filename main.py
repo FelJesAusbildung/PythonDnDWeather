@@ -15,7 +15,7 @@ def main_dialogue():
     if chosen == "Roll Weather":
         roller.roll_loop()
     elif chosen == "Modify Json Data":
-        interactor.main_loop()
+        interactor.interact_menu()
     elif chosen == "Exit":
         close()
     main_dialogue()

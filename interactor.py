@@ -2,20 +2,20 @@ import grouper
 import balancer
 
 
-def main_loop():
-    modifiable = ["Weather.json", "Wind.json", "Groups.json", "SailingEncounter.json"]
-    pick = show_and_select(modifiable)
-    pick_items = balancer.items_from_json(pick)
-    if pick is "Wind.json":
-        interact_main(pick, pick_items, keys=['apocalypseChance', 'nonApocalypseChance'])
-    elif pick is "SailingEncounter.json":
+def interact_menu():
+    menu_items = ["Wind.json", "Weather.json", "Groups.json", "SailingEncounter.json"]
+    chosen = show_and_select(menu_items)
+    chosen_items = balancer.items_from_json(chosen)
+    if chosen is "Wind.json":
+        interact_main(chosen, chosen_items, keys=['apocalypseChance', 'nonApocalypseChance'])
+    elif chosen is "Weather.json":
+        interact_main(chosen, chosen_items)
+    elif chosen is "Groups.json":
+        interact_main(chosen, chosen_items, keys=['total_chance'])
+    elif chosen is "SailingEncounter.json":
         group_data = balancer.items_from_json("Groups.json")
-        grouper.generate_groups(pick_items, group_data)
-        interact_main(pick, pick_items)
-    elif pick is "Groups.json":
-        interact_main(pick, pick_items, keys=['total_chance'])
-    else:
-        interact_main(pick, pick_items)
+        grouper.generate_groups(chosen_items, group_data)
+        interact_main(chosen, chosen_items)
 
 
 def interact_main(filename, items, keys=['chance']):
@@ -28,12 +28,12 @@ def interact_main(filename, items, keys=['chance']):
 def interact_modify(items):
     done = False
     while not done:
-        selected_item = show_and_select(items)
-        if 'content' in selected_item:
-            interact_modify(selected_item['content'])
+        chosen = show_and_select(items)
+        if 'content' in chosen:
+            interact_modify(chosen['content'])
         else:
-            items = modify_selected_item(items, selected_item)
-        done = not show_confirm_done()
+            items = modify_selected_item(items, chosen)
+        done = not show_confirm_continue()
     return items
 
 
@@ -41,14 +41,10 @@ def interact_balance(items, keys):
     print("Balance New Chances?")
     if show_bool_decider():
         for key in keys:
-            if grouper.check_for_groups_in(items):
-                balancer.balance_with_groups(items, total=1000000)
-            else:
-                balancer.balance(items, total=1000000, key=key)
-        for key in keys:
+            balancer.balance_with_groups(items, total=1000000, key=key)
             print("Items({}) Were Rebalanced To {}%".format(key, balancer.get_total_chance(items, key=key) / 10000))
     else:
-        print("Chances Were Not Balanced! This Leads To Strange Chances")
+        print("Chances Were Not Balanced! This Leads To Wrong Chances")
     return items
 
 
@@ -80,16 +76,16 @@ def show_entry(entry):
 
 
 def show_bool_decider():
-    selector = int(custom_input('[1] True\n[2] False\n', 2))
-    if selector == 1:
+    chosen = int(custom_input('[1] True\n[2] False\n', 2))
+    if chosen == 1:
         return True
-    if selector == 2:
+    if chosen == 2:
         return False
     else:
         return show_bool_decider()
 
 
-def show_confirm_done():
+def show_confirm_continue():
     print("Do you want to keep going?")
     return show_bool_decider()
 
@@ -122,12 +118,12 @@ def validate(input_string, int_max):
         return True
 
 
-def modify_selected_item(items, selected_item):
-    print(selected_item)
-    selected_field = select_dict_field(selected_item)
+def modify_selected_item(items, chosen):
+    print(chosen)
+    selected_field = select_dict_field(chosen)
     print(selected_field)
     edited_field = edit_field(selected_field)
-    edited_item = save_field_to_item(edited_field, selected_item)
+    edited_item = save_field_to_item(edited_field, chosen)
     items = save_item_to_items(edited_item, items)
     return items
 

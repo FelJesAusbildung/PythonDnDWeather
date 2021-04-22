@@ -1,6 +1,10 @@
+import grouper
+
+
+
 def build_group(items, group_identifier):
-    return_groups = []
     return_items = []
+    return_groups = []
     items_to_remove = []
     for item in items:
         if 'identifier' in item:
@@ -26,24 +30,24 @@ def build_group(items, group_identifier):
 
 def generate_groups(items, group_identifiers):
     for group_identifier in group_identifiers:
-        built = build_group(items, group_identifier)
-        items.insert(0, built)
+        group = build_group(items, group_identifier)
+        items.insert(0, group)
 
 
-def check_for_groups_in(items):
-    there_are_groups = False
+def has_groups(items):
+    has_group = False
     for item in items:
         if 'identifier' in item:
-            there_are_groups = True
-    return there_are_groups
+            has_group = True
+    return has_group
 
 
 def ungroup(items):
-    tested = check_for_groups_in(items)
-    while tested:
+    has_groups = grouper.has_groups(items)
+    while has_groups:
         for item in items:
             if 'identifier' in item:
                 for group_item in item['content']:
                     items.append(group_item)
                 items.remove(item)
-        tested = check_for_groups_in(items)
+        has_groups = has_groups(items)

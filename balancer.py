@@ -12,7 +12,7 @@ def write_items_to_file(filename, json_data):
         json.dump(json_data, file, indent=2)
 
 
-def get_list_of_items_for_key(items, key='chance'):
+def get_all_chances(items, key='chance'):
     chances = []
     for item in items:
         chances.append(item[key])
@@ -29,7 +29,7 @@ def get_total_chance(items, key='chance'):
     return chance_placeholder
 
 
-def balance(items, key='chance', total=100, inflation_factor=1000):
+def balance(items, total, key='chance', inflation_factor=1000):
     chances = get_corrected_chances(inflation_factor=inflation_factor, items=items, key=key, total=total)
     for item, chance in zip(items, chances):
         item[key] = chance
@@ -37,7 +37,7 @@ def balance(items, key='chance', total=100, inflation_factor=1000):
 
 def get_corrected_chances(items, key, total, inflation_factor):
     new_total = total / inflation_factor
-    chances = get_list_of_items_for_key(items, key)
+    chances = get_all_chances(items, key)
     chance_divisor = sum(chances) / new_total
     corrected_chances = []
     for chance in chances:
@@ -45,12 +45,12 @@ def get_corrected_chances(items, key, total, inflation_factor):
     return corrected_chances
 
 
-def balance_with_groups(items, total=1000000):
-    has_groups = grouper.check_for_groups_in(items)
+def balance_with_groups(items, total=1_000_000, key='chance'):
+    has_groups = grouper.has_groups(items)
     for item in items:
         if 'identifier' in item:
             item['chance'] = item['identifier']['total_chance']
-    balance(items, total=total)
+    balance(items, total=total, key=key)
     for item in items:
         if 'identifier' in item:
             item['identifier']['total_chance'] = item['chance']
