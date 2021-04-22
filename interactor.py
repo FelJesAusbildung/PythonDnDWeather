@@ -113,7 +113,7 @@ def custom_input(string, int_max):
 
 def validate(input_string, int_max):
     if not input_string.isdecimal():
-        print("Your Selection Has To Be A Number")
+        print("Your Selection Has To Be A Whole Number")
         return False
     elif not (1 <= int(input_string) <= int_max):
         print("Your Selection Has To Be Within The Shown Range")
