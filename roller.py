@@ -68,8 +68,7 @@ def roll():
     logging.info("starting roll dialogue")
     weeks = int(input('number of weeks to calculate: \n'))
     for number in range(0, weeks):
-        print()
-        print("Week {}:".format(number + 1))
+        print("\nWeek {}:".format(number + 1))
         roll_encounter()
         roll_weather()
     logging.info("finished roll dialogue")
